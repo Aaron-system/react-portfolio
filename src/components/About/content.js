@@ -25,6 +25,9 @@ export const suggestedPrompts = [
   'What projects are you working on?',
   'How do you use AI + law?',
   'What tech do you specialize in?',
+  'Tell me about Horizon Legal Docs',
+  'What is Arbiter Legal AI?',
+  'Tell me about the blockchain project',
 ];
 
 export const contentGuides = {
@@ -33,6 +36,12 @@ export const contentGuides = {
   'How do you use AI + law?': `I build tools that sit between legal reasoning and machine learning pipelines. At Kreisson Legal, I designed AI-assisted workflows for contract review — clause extraction, compliance checking against frameworks like GDPR and SOX, and automated document generation. The core idea is taking tasks that lawyers spend hours on (reviewing contracts, citing precedent, checking compliance) and building software that handles the mechanical parts so they can focus on judgment. I work with NLP, transformers, and custom legal citation engines.`,
 
   'What tech do you specialize in?': `My core stack is React + Python. Frontend: React, TypeScript, SCSS, animation systems. Backend: FastAPI, Django, Flask. AI/ML: TensorFlow, Hugging Face, custom NLP pipelines. I've also shipped smart contracts in Solidity and built hardware interfaces with ROS2. But my strongest combination is full-stack web + AI — building tools where a React frontend talks to a Python ML backend, especially in legal tech.`,
+
+  'Tell me about Horizon Legal Docs': `Horizon Legal Docs is a production legal document automation platform I built at Kreisson Legal. It ingests complex construction contracts, runs multi-phase clause extraction, flags risk clauses, checks compliance against GDPR and SOX, and auto-generates AGLC4 citations. The platform reduced lawyer review time by over 40% per engagement and is live in production. Stack: React, FastAPI, Python, custom NLP pipelines, PostgreSQL.`,
+
+  'What is Arbiter Legal AI?': `Arbiter is a multi-model legal AI research assistant I built using RAG and hybrid retrieval. It sits on top of large document sets and returns near-instant answers by combining vector search with keyword retrieval, then feeding results into multiple LLMs simultaneously so you can compare their reasoning. Response times went from several minutes (manual search) to sub-second. Stack: FastAPI, Python, Hugging Face, vector databases, React frontend, custom LLM orchestration layer.`,
+
+  'Tell me about the blockchain project': `The Flask Blockchain is a full distributed ledger built from scratch in Python. It implements proof-of-work consensus, peer-to-peer node registration, transaction validation, and exposes a REST API for mining blocks and inspecting the chain state. I built it to understand exactly how the Bitcoin protocol works at the implementation level — not just conceptually. I also have experience with Solidity for smart contract development.`,
 };
 
 export const defaultGreeting =

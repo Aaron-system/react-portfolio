@@ -4,13 +4,14 @@ import './index.scss';
 
 const featuredProjects = [
     {
-        title: 'AI Document Builder',
-        category: 'Legal AI',
+        title: 'Horizon Legal Docs',
+        category: 'Legal AI · Document Automation',
         image: '/HorizonLegal.png',
+        link: 'https://docs.aaronk.tech',
     },
     {
-        title: 'Multi Legal AI Assistant',
-        category: 'Legal AI / NLP',
+        title: 'Arbiter Legal AI',
+        category: 'Legal AI · RAG · Multi-LLM',
         image: '/arbiter.png',
     },
     {
@@ -21,8 +22,9 @@ const featuredProjects = [
     },
     {
         title: 'Flask Blockchain',
-        category: 'Python / Web3',
+        category: 'Python · Web3 · Distributed Systems',
         image: '/blockchain.png',
+        link: 'https://blockchain.aaronk.tech',
     },
 ];
 

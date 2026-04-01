@@ -47,32 +47,34 @@ const roles = [
 
 const projects = [
   {
-    title: 'AI-Powered Contract Analysis Platform',
+    title: 'Horizon Legal Docs',
     level: 'Production — Advanced',
     description:
-      'Production system for automated analysis of complex construction contracts. Multi-phase document extraction, risk identification, and compliance review. Reduced lawyer engagement time by over 40% with measurable monthly cost savings.',
-    stack: ['Python', 'FastAPI', 'React', 'NLP', 'Transformers'],
+      'AI-powered legal document automation platform deployed at Kreisson Legal. ' +
+      'Multi-phase clause extraction, risk identification, GDPR/SOX compliance review, ' +
+      'and AGLC4 auto-citation for complex construction contracts. ' +
+      'Reduced lawyer review time by over 40% per engagement.',
+    stack: ['React', 'Python', 'FastAPI', 'NLP', 'Transformers', 'PostgreSQL'],
   },
   {
-    title: 'Legal Research & RAG Platform',
+    title: 'Arbiter Legal AI',
     level: 'Production — Advanced',
     description:
-      'Sophisticated document retrieval system using hybrid retrieval techniques and vector search. Query response time reduced from minutes to near-instant. Supports multi-model LLM integration for intelligent legal research across large document sets.',
-    stack: ['RAG', 'Vector Search', 'LLM', 'Python', 'FastAPI'],
+      'Multi-model legal AI research assistant powered by RAG and hybrid vector search. ' +
+      'Delivers near-instant answers across large legal document sets. ' +
+      'Supports simultaneous queries to multiple LLMs for comparative legal reasoning. ' +
+      'Query response time reduced from several minutes to sub-second.',
+    stack: ['Python', 'FastAPI', 'RAG', 'Vector DB', 'Hugging Face', 'React', 'LLM Orchestration'],
   },
   {
-    title: 'Legal Publication Automation Platform',
-    level: 'Production — Advanced',
+    title: 'Flask Blockchain',
+    level: 'Personal — Advanced',
     description:
-      'Automated pipeline for legal content research and publication. 95% reduction in content production time through workflow orchestration and LLM integration.',
-    stack: ['Python', 'LLM', 'Automation', 'NLP'],
-  },
-  {
-    title: 'Distributed Infrastructure Clusters',
-    level: 'Internal — Production',
-    description:
-      'Self-hosted compute clusters for internal application deployment. Eliminated unnecessary cloud costs by building on-premise infrastructure that scales only at critical market points — delivering significant cost savings.',
-    stack: ['Ubuntu Linux', 'GPU Infra', 'Distributed Computing', 'DevOps'],
+      'Full blockchain implementation from scratch in Python and Flask. ' +
+      'Proof-of-work consensus, distributed nodes, transaction validation, ' +
+      'and a REST API for mining, inspecting the chain, and registering nodes. ' +
+      'Built to deeply understand how distributed ledger systems operate at the protocol level.',
+    stack: ['Python', 'Flask', 'REST API', 'Cryptography', 'Distributed Systems', 'Solidity'],
   },
 ];
 
