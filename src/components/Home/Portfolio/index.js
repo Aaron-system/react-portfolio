@@ -7,26 +7,26 @@ const featuredProjects = [
         title: 'Horizon Legal Docs',
         category: 'Legal AI · Document Automation',
         image: '/HorizonLegal.png',
-        link: 'https://horizonlegaldocs.online',
+        link: 'https://docs.aaronk.tech',
     },
     {
         title: 'Arbiter Legal AI',
         category: 'Legal AI · RAG · Multi-LLM',
         image: '/arbiter.png',
-        link: 'https://arbiter.aaronk.tech',
+        placeholder: true,
     },
     {
         title: 'Neural Network Tribe Simulation',
         category: 'Python / ML',
         image: '/network_a38_t00400.png',
         blur: true,
-        link: 'https://github.com/Aaron-system',
+        placeholder: true,
     },
     {
         title: 'Flask Blockchain',
         category: 'Python · Web3 · Distributed Systems',
         image: '/blockchain.png',
-        link: 'https://github.com/Aaron-system',
+        link: 'https://github.com/Aaron-system/Blockchain_project',
     },
 ];
 
