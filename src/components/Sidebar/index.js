@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import LogoS from '../../assets/images/aaronlogo.png'
 import LongSubtitle from '../../assets/images/aaronsign.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUser, faEnvelope, faBriefcase } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 
@@ -15,14 +15,34 @@ const Sidebar = () => (
 
         </Link>
         <nav>
-            <NavLink exact="true" to='/' activeClassName='active'>
-                <FontAwesomeIcon icon={faHome} color='4d4d4e' />
+            <NavLink
+                to='/'
+                end
+                className={({ isActive }) => (isActive ? 'active' : undefined)}
+                aria-label='Home'
+            >
+                <FontAwesomeIcon icon={faHome} />
             </NavLink>
-            <NavLink exact="true" to='/about' activeClassName='active' className="about-link">
-                <FontAwesomeIcon icon={faUser} color='4d4d4e' />
+            <NavLink
+                to='/experience'
+                className={({ isActive }) => `experience-link${isActive ? ' active' : ''}`}
+                aria-label='Experience'
+            >
+                <FontAwesomeIcon icon={faBriefcase} />
             </NavLink>
-            <NavLink exact="true" to='/contact' activeClassName='active' className="contact-link">
-                <FontAwesomeIcon icon={faEnvelope} color='4d4d4e' />
+            <NavLink
+                to='/about'
+                className={({ isActive }) => `about-link${isActive ? ' active' : ''}`}
+                aria-label='About'
+            >
+                <FontAwesomeIcon icon={faUser} />
+            </NavLink>
+            <NavLink
+                to='/contact'
+                className={({ isActive }) => `contact-link${isActive ? ' active' : ''}`}
+                aria-label='Contact'
+            >
+                <FontAwesomeIcon icon={faEnvelope} />
             </NavLink>
 
         </nav>

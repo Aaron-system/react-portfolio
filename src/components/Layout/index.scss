@@ -1,7 +1,23 @@
+.App {
+    height: 100vh;
+    position: relative;
+    background: #080520;
+    overflow: hidden;
+}
+
 .page {
     width: 100%;
-    height: 100%;
-    position: absolute;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .top-tags {
@@ -17,7 +33,6 @@
     left: 120px;
     font-size: 18px;
     font-family: "La Belle Aurore";
-    ;
 }
 
 .bottom-tag-html {
@@ -34,9 +49,35 @@
     transform-style: preserve-3d;
     animation: fadeIn 1s forwards;
     animation-delay: 1s;
+    z-index: 1;
 }
 
-.about-page,
+@media screen and (max-width: 768px) {
+    .App {
+        overflow-y: auto;
+    }
+
+    .page {
+        height: calc(100vh - 56px);
+    }
+
+    /* Override absolute container — sidebar is at bottom, not left */
+    .container {
+        position: relative;
+        height: auto;
+        min-height: unset;
+        overflow-y: auto;
+    }
+
+    .tags {
+        display: none;
+    }
+
+    .top-tags {
+        display: none;
+    }
+}
+
 .contact-page {
     .text-zone {
         position: absolute;

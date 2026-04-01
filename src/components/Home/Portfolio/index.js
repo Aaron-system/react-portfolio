@@ -1,173 +1,128 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './index.scss';
-import { Box, Button, Modal } from '@mui/material';
-import 'animate.css';
 
-
+const featuredProjects = [
+    {
+        title: 'AI Document Builder',
+        category: 'Legal AI',
+        image: '/HorizonLegal.png',
+    },
+    {
+        title: 'Multi Legal AI Assistant',
+        category: 'Legal AI / NLP',
+        image: '/arbiter.png',
+    },
+    {
+        title: 'Neural Network Tribe Simulation',
+        category: 'Python / ML',
+        image: '/network_a38_t00400.png',
+        blur: true,
+    },
+    {
+        title: 'Flask Blockchain',
+        category: 'Python / Web3',
+        image: '/blockchain.png',
+    },
+];
 
 const Portfolio = () => {
+    const navigate = useNavigate();
 
-    const [open, setOpen] = useState(false);
+    const handleCardMove = (event) => {
+        const { currentTarget, clientX, clientY } = event;
+        const rect = currentTarget.getBoundingClientRect();
+        const offsetX = (clientX - rect.left) / rect.width - 0.5;
+        const offsetY = (clientY - rect.top) / rect.height - 0.5;
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+        currentTarget.style.setProperty('--card-rotate-x', `${offsetY * -6}deg`);
+        currentTarget.style.setProperty('--card-rotate-y', `${offsetX * 8}deg`);
+        currentTarget.style.setProperty('--card-shift-x', `${offsetX * 14}px`);
+        currentTarget.style.setProperty('--card-shift-y', `${offsetY * 10}px`);
+    };
 
-    const modalContent = (
-        <Box
-            className="animate__animated animate__jackInTheBox"
-            sx={{
-                position: 'absolute',
-                justifyContent: 'center',
-                top: '50%',
-                left: '45%',
-                transform: 'translate(-50%, -50%)',
-                bgcolor: 'background.paper',
-                border: '2px solid #000',
-                boxShadow: 24,
-                p: 4,
-            }}
-        >
-            <h4>Would you like to be a client or a node?</h4>
-            <div className='buttons-modal'>
-                <Button href="link1" target="_blank" rel="noopener noreferrer">
-                    Client Alice
-                </Button>
-                <Button href="link1" target="_blank" rel="noopener noreferrer">
-                    Client Bob
-                </Button>
-                <Button href="link2" target="_blank" rel="noopener noreferrer">
-                    Node
-                </Button>
-            </div>
-        </Box>
-    );
-
-
-
+    const resetCardMove = (event) => {
+        const { currentTarget } = event;
+        currentTarget.style.setProperty('--card-rotate-x', '0deg');
+        currentTarget.style.setProperty('--card-rotate-y', '0deg');
+        currentTarget.style.setProperty('--card-shift-x', '0px');
+        currentTarget.style.setProperty('--card-shift-y', '0px');
+    };
 
 
 
     return (
-        <div className="container portfolio-page">
-
-            <div className='portfolio-wrap'>
-                <br />
-                <br />
-                <br />
+        <section className="portfolio-panel">
+            <div className="portfolio-wrap">
                 <div className="card-grid">
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://pbs.twimg.com/media/FqH4Wf2aMAUBmtN?format=jpg&name=medium)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">React</p>
-                            <h3 className="card__heading">AI Document Builder</h3>
-                        </div>
-                    </a>
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://pbs.twimg.com/media/Fr0Q0p6acAA1EsL?format=png&name=small)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">React</p>
-                            <h3 className="card__heading">Midjourney Clone</h3>
-                        </div>
-                    </a>
+                    {featuredProjects.map((project) => (
+                        <article
+                            key={project.title}
+                            className={`card${project.placeholder ? ' card--placeholder' : ''}`}
+                            onMouseMove={handleCardMove}
+                            onMouseLeave={resetCardMove}
+                        >
+                            <div
+                                className="card__background"
+                                style={{
+                                    backgroundImage: `url(${project.image})`,
+                                    ...(project.blur ? {
+                                        backgroundSize: '300%',
+                                        backgroundPosition: 'center center',
+                                        filter: 'brightness(0.95) saturate(0.9) contrast(1.05) blur(4px)',
+                                        transform: 'scale(1.02)',
+                                        backgroundColor: '#05041a',
+                                    } : {}),
+                                }}
+                            />
+                            <div className="card__content">
+                                <p className="card__category">
+                                    {project.category}
+                                </p>
+                                <h3 className="card__heading">
+                                    {project.title}
+                                </h3>
+                                {project.placeholder && (
+                                    <span className="card__coming-soon">Coming Soon</span>
+                                )}
+                            </div>
+                        </article>
+                    ))}
 
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://pbs.twimg.com/media/FqH09SPaQAASXyV?format=png&name=small)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">React</p>
-                            <h3 className="card__heading">Magic Memory Card Game</h3>
-                        </div>
-                    </a>
-
-                    <a className="card" onClick={handleOpen}>
-                        <div
-                            className="card__background"
-                            style={{
-                                backgroundImage: 'url(https://www.filepicker.io/api/file/L83xfxy4SPuTCmr9GEDC)',
-                            }}
-                        ></div>
-                        <div className="card__content">
-                            <p className="card__category">Python</p>
-                            <h3 className="card__heading">Flask Blockchain</h3>
-                        </div>
-                    </a>
-
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-title"
-                        aria-describedby="modal-description"
+                    <button
+                        type="button"
+                        className="card card-button experience-card"
+                        onClick={() => navigate('/experience')}
+                        onMouseMove={handleCardMove}
+                        onMouseLeave={resetCardMove}
                     >
-                        {modalContent}
-                    </Modal>
-
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://cdn-images-1.medium.com/max/1000/1*F-PHNVI7wdcoYFDrA9pmGQ.jpeg)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Python</p>
-                            <h3 className="card__heading">Neural-Network to Read Handwritten Digits</h3>
+                        <div className="experience-card__inner">
+                            {[...Array(10)].map((_, i) => (
+                                <span key={i} className="experience-card__particle" style={{ '--i': i }} />
+                            ))}
+                            <span className="experience-card__status" />
+                            <p className="experience-card__label">EXPERIENCE</p>
+                            <ul className="experience-card__preview">
+                                <li>
+                                    Legal Software Engineer{' '}
+                                    <span>&mdash; Kreisson Legal</span>
+                                </li>
+                                <li>
+                                    Helpdesk / Doc Automation{' '}
+                                    <span>&mdash; LEAP Legal</span>
+                                </li>
+                                <li>
+                                    Intern{' '}
+                                    <span>&mdash; Lawpath</span>
+                                </li>
+                            </ul>
+                            <p className="experience-card__hint">View full career log →</p>
                         </div>
-                    </a>
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://pbs.twimg.com/media/Fr4LtPBaYAEHxgq?format=png&name=small)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Python</p>
-                            <h3 className="card__heading">Optical Character Rocognition with Pytesseract</h3>
-                        </div>
-                    </a>
-
-
-
-
-                    {/* <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Python</p>
-                            <h3 className="card__heading">Example Card Heading</h3>
-                        </div>
-                    </a> */}
-
-                </div>
-
-
-                <br />
-                <br />
-                <br />
-                <br />
-
-
-                <div className="card-grid">
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Category</p>
-                            <h3 className="card__heading">Example Card Heading</h3>
-                        </div>
-                    </a>
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Category</p>
-                            <h3 className="card__heading">Example Card Heading</h3>
-                        </div>
-                    </a>
-                    <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Category</p>
-                            <h3 className="card__heading">Example Card Heading</h3>
-                        </div>
-                    </a>
-                    {/* <a className="card" href="#">
-                        <div className="card__background" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)" }}></div>
-                        <div className="card__content">
-                            <p className="card__category">Category</p>
-                            <h3 className="card__heading">Example Card Heading</h3>
-                        </div>
-                    </a> */}
-
+                    </button>
                 </div>
             </div>
-        </div>
+
+        </section>
     );
 };
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import AnimatedLetters from '../AnimatedLetters';
 import { useState, useEffect } from 'react';
 import './index.scss';
-import Logo from './Logo';
 import Loader from 'react-loaders'
 import Portfolio from './Portfolio'
 
@@ -13,12 +12,13 @@ const Home = () => {
     const [letterClass, setLetterClass] = useState('text-animate');
 
     const nameArray = [" ", "A", "a", "r", "o", "n"];
-    const jobArray = ["a", " ", "F", "u", "l", "l", "s", "t", "a", "c", "k", " ", "D", "e", "v", "."];
+    const jobLine1 = ["a", " ", "L", "e", "g", "a", "l", " ", "T", "e", "c", "h", " ", "+"];
+    const jobLine2 = ["A", "I", " ", "D", "e", "v", "e", "l", "o", "p", "e", "r", "."];
 
     useEffect(() => {
         setTimeout(() => {
             setLetterClass('text-animate-hover')
-        }, 4000)
+        }, 6000)
     }, [])
 
 
@@ -39,14 +39,31 @@ const Home = () => {
                         {/* <img src={LogoTitle} alt="developer" /> */}
                         <AnimatedLetters letterClass={letterClass}
                             strArray={nameArray}
-                            idx={16} />
+                            idx={17} />
                         <br />
                         <AnimatedLetters letterClass={letterClass}
-                            strArray={jobArray}
-                            idx={16} />
+                            strArray={jobLine1}
+                            idx={23} />
+                        <br />
+                        <AnimatedLetters letterClass={letterClass}
+                            strArray={jobLine2}
+                            idx={37} />
                     </h1>
 
-                    <h2>Fullstack Developer / Javascript / Python</h2>
+                    <h2>Building intelligent systems across legal AI, simulations, and full-stack development.</h2>
+                    <p className="credibility-strip">
+                        <span>Kreisson Legal</span>
+                        <span>LEAP Legal Software</span>
+                        <span>Freelance</span>
+                    </p>
+                    <a
+                        href="https://github.com/Aaron-system"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="github-link"
+                    >
+                        Browse GitHub
+                    </a>
                     <Link to="/contact" className="flat-button">CONTACT ME</Link>
 
 

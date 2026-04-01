@@ -2,8 +2,9 @@ import './index.scss'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 import { useState, useEffect, useRef } from 'react'
-import emailjs from 'emailjs-com'
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import emailjs from '@emailjs/browser'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
 
 
@@ -12,6 +13,12 @@ const Contact = () => {
 
     const [letterClass, setLetterClass] = useState('text-animate');
     const refForm = useRef();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+
+    const emailServiceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_8w4muzx';
+    const emailTemplateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_ll12y5w';
+    const emailPublicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '6k5ociAeUUYISgV_7';
 
 
     useEffect(() => {
@@ -20,26 +27,32 @@ const Contact = () => {
         }, 3000)
     }, [])
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
 
-        emailjs
-            .sendForm(
-                'service_8w4muzx',
-                'template_ll12y5w',
+        try {
+            await emailjs.sendForm(
+                emailServiceId,
+                emailTemplateId,
                 refForm.current,
-                '6k5ociAeUUYISgV_7'
-            )
-            .then(
-                () => {
-                    alert('Email sent successfully!')
-                    window.location.reload(false)
-                },
-                () => {
-                    alert('Something went wrong, please try again later.')
-                }
+                emailPublicKey
+            );
 
-            )
+            refForm.current.reset();
+            setSubmitStatus({
+                type: 'success',
+                message: 'Thanks for reaching out. Your message has been sent.',
+            });
+        } catch (error) {
+            setSubmitStatus({
+                type: 'error',
+                message: 'Something went wrong while sending your message. Please try again.',
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
 
     }
 
@@ -56,11 +69,13 @@ const Contact = () => {
                             idx={15}
                         />
                     </h1>
-                    <p>I'm a passionate Fullstack developer with experience in Python, JavaScript, and various web development
-                        frameworks including Django and React. I've built projects ranging from a Document Builder Application
-                        to a Magic Memory Card Game. My skills also include neural network development, optical character
-                        recognition, natural language processing, and AGLC4 Citator development. If you're interested in hiring
-                        a skilled and dedicated developer, please feel free to contact me.
+                    <p>
+                        I&apos;m a fullstack developer specializing in legal software automation
+                        and AI-driven systems. I build tools that streamline contract intelligence,
+                        document generation, and compliance workflows &mdash; combining NLP,
+                        machine learning, and modern web frameworks to solve real problems
+                        in law and beyond. Whether it&apos;s a new project, collaboration, or
+                        just a conversation about tech, I&apos;d love to hear from you.
                     </p>
 
 
@@ -101,9 +116,17 @@ const Contact = () => {
                                     <button
                                         type='submit'
                                         className="flat-button1"
-                                        value="SEND">CONTACT</button>
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? 'SENDING...' : 'CONTACT'}
+                                    </button>
                                 </li>
 
+                                {submitStatus && (
+                                    <li className={`form-status ${submitStatus.type}`}>
+                                        {submitStatus.message}
+                                    </li>
+                                )}
 
                             </ul>
 
@@ -119,7 +142,7 @@ const Contact = () => {
                     <br></br>
                     Sydney, Australia
                     <br></br>
-                    <span>aaronfullstackdev777@gmail.com</span>
+                    <span>aaron.kreidieh@gmail.com</span>
                 </div>
 
                 <div className='map-wrap'>

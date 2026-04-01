@@ -1,22 +1,30 @@
 .home-page {
+    display: grid;
+    grid-template-columns: minmax(320px, 420px) minmax(620px, 1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    padding: 80px 56px 56px 100px;
+    box-sizing: border-box;
 
     .text-zone {
-        position: absolute;
-        left: 10%;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40%;
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
         max-height: 90%;
         z-index: 1;
     }
 
     h1 {
         color: #fff;
-        font-size: 53px;
+        font-size: clamp(32px, 5vw, 53px);
         margin: 0;
         font-family: 'Coolvetica';
         font-weight: 400;
-
+        line-height: 1.15;
 
         &::before {
             content: '<h1>';
@@ -39,8 +47,6 @@
             margin-left: 20px;
             animation: fadeIn 1s 1.7s backwards;
             opacity: 0.6;
-
-
         }
 
         img {
@@ -52,19 +58,109 @@
             animation-delay: 1.4s;
         }
     }
+}
 
+@media screen and (max-width: 1200px) {
+    .home-page {
+        grid-template-columns: 1fr;
+        align-items: start;
+        padding: 96px 36px 48px 100px;
+    }
+}
 
+@media screen and (max-width: 768px) {
+    .home-page {
+        /* sidebar is now at bottom — no left sidebar offset needed */
+        padding: 20px 20px 80px 20px;
+        min-height: auto;
+        grid-template-columns: 1fr;
+
+        h1 {
+            font-size: clamp(28px, 8vw, 42px);
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 13px !important;
+        letter-spacing: 1px !important;
+        margin-top: 14px !important;
+    }
+
+    .credibility-strip {
+        font-size: 10px !important;
+        margin-top: 10px !important;
+    }
+
+    .flat-button {
+        font-size: 12px !important;
+        letter-spacing: 3px !important;
+        padding: 9px 16px !important;
+    }
+
+    .github-link {
+        font-size: 11px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .home-page {
+        padding: 16px 16px 80px 16px;
+
+        h1 {
+            font-size: clamp(24px, 9vw, 36px);
+        }
+    }
 }
 
 h2 {
     color: #8d8d8d;
     margin-top: 20px;
     font-weight: 400;
-    font-size: 11px;
-    font-family: 'sans-serif';
-    letter-spacing: 3px;
+    font-size: 13px;
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
     animation: fadeIn 1s 1.8s backwards;
-    ;
+}
+
+.credibility-strip {
+    margin-top: 14px;
+    font-size: 11px;
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.35);
+    animation: fadeIn 1s 2.2s backwards;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+
+    span {
+        &:not(:last-child)::after {
+            content: '·';
+            margin: 0 10px;
+            color: rgba(255, 215, 0, 0.4);
+        }
+    }
+}
+
+.github-link {
+    display: block;
+    width: fit-content;
+    margin-top: 16px;
+    color: #ffd700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-family: 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .flat-button {
@@ -72,11 +168,11 @@ h2 {
     font-size: 13px;
     font-weight: 400;
     letter-spacing: 4px;
-    font-family: 'sans-serif';
+    font-family: 'Helvetica Neue', sans-serif;
     text-decoration: none;
     padding: 10px 18px;
     border: 1px solid #ffd700;
-    margin-top: 25px;
+    margin-top: 18px;
     float: left;
     animation: fadeInAnimation 1s 1.8s backwards;
     white-space: nowrap;
