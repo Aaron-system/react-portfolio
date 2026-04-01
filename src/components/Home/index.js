@@ -52,8 +52,7 @@ const Home = () => {
 
                     <h2>Building intelligent systems across legal AI, simulations, and full-stack development.</h2>
                     <p className="credibility-strip">
-                        <span>Kreisson Legal</span>
-                        <span>LEAP Legal Software</span>
+                        <span>Legal Software Engineer</span>
                         <span>Freelance</span>
                     </p>
                     <a
