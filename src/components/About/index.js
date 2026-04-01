@@ -159,7 +159,8 @@ const About = () => {
 
           <div className="about-ctas">
             <a
-              href="/resume.pdf"
+              href="/Aaron_Kreidieh_Resume_2026.docx"
+              download="Aaron_Kreidieh_Resume_2026.docx"
               className="about-btn about-btn--primary"
               target="_blank"
               rel="noopener noreferrer"
