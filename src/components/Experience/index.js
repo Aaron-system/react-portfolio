@@ -344,10 +344,8 @@ const Experience = () => {
       {/* CTA */}
       <section className="exp-cta">
         <a
-          href="/Aaron_Kreidieh_Resume_2026.docx"
+          href="/resume.docx"
           download="Aaron_Kreidieh_Resume_2026.docx"
-          target="_blank"
-          rel="noopener noreferrer"
           className="exp-cta__btn"
         >
           Download Resume
