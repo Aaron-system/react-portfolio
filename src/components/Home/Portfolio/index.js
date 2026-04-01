@@ -13,20 +13,20 @@ const featuredProjects = [
         title: 'Arbiter Legal AI',
         category: 'Legal AI · RAG · Multi-LLM',
         image: '/arbiter.png',
-        placeholder: true,
+        link: 'https://arbiter.aaronk.tech',
     },
     {
         title: 'Neural Network Tribe Simulation',
         category: 'Python / ML',
         image: '/network_a38_t00400.png',
         blur: true,
-        placeholder: true,
+        link: 'https://github.com/Aaron-system/Neural_network_Python',
     },
     {
         title: 'Flask Blockchain',
         category: 'Python · Web3 · Distributed Systems',
         image: '/blockchain.png',
-        link: 'https://github.com/Aaron-system/Blockchain_project',
+        link: 'https://blockchain.aaronk.tech',
     },
 ];
 
