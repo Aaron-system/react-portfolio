@@ -166,6 +166,33 @@
     filter: brightness(0.6) saturate(0.5) contrast(1);
 }
 
+// Linked card
+a.card--linked {
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.card__visit {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffd700;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 200ms ease, transform 200ms ease;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.card--linked:hover .card__visit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .card__background--blurred {
     background-size: 300%;
     background-repeat: no-repeat;
