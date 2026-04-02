@@ -10,11 +10,11 @@ const roles = [
     period: 'Aug 2025 — Mar 2026',
     status: 'COMPLETED',
     bullets: [
-      'Built an intelligent contract analysis platform for construction contracts — automated clause extraction, risk identification, and compliance review, reducing lawyer review time by over 40% per engagement.',
-      'Architected a document retrieval system using vector search and hybrid retrieval, reducing query response time from minutes to near-instant.',
-      'Designed an AI-powered legal research and publication platform, achieving 95% reduction in content production time.',
-      'Operated across the full stack — backend API design, database architecture, React frontend interfaces — delivering production systems within a resource-constrained environment.',
-      'Built distributed compute clusters for internal infrastructure, eliminating unnecessary cloud spend and enabling scale-on-demand at critical market points.',
+      'Designed and built AI-powered software tools for a specialist legal practice, automating document workflows and reducing time spent on high-volume repetitive tasks.',
+      'Architected document retrieval and search systems using vector search and hybrid retrieval techniques, significantly reducing query response time.',
+      'Operated across the full stack — backend API design, database architecture, React frontend interfaces — delivering production-ready systems in a resource-constrained environment.',
+      'Built distributed compute infrastructure for internal application deployment, eliminating unnecessary cloud costs and enabling on-demand scaling.',
+      'Bridged legal domain knowledge with software engineering to translate complex practice requirements into reliable, functional systems.',
     ],
     stack: ['React', 'Python', 'FastAPI', 'RAG', 'Vector DB', 'Hugging Face', 'Ubuntu Server'],
   },
@@ -50,10 +50,10 @@ const projects = [
     title: 'Horizon Legal Docs',
     level: 'Production — Advanced',
     description:
-      'AI-powered legal document automation platform deployed at Kreisson Legal. ' +
-      'Multi-phase clause extraction, risk identification, GDPR/SOX compliance review, ' +
-      'and AGLC4 auto-citation for complex construction contracts. ' +
-      'Reduced lawyer review time by over 40% per engagement.',
+      'AI-powered legal document automation platform. ' +
+      'Full-stack system spanning document ingestion, NLP-driven clause analysis, ' +
+      'compliance checking, and automated citation generation. ' +
+      'Built with a React frontend, FastAPI backend, and custom transformer pipelines — deployed in production.',
     stack: ['React', 'Python', 'FastAPI', 'NLP', 'Transformers', 'PostgreSQL'],
   },
   {
