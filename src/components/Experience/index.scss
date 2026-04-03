@@ -644,16 +644,16 @@ $muted: rgba(255, 255, 255, 0.4);
   }
 
   .exp-hero h1 {
-    font-size: 64px;
+    font-size: 64px !important;
   }
 
   .exp-hero__summary {
-    font-size: 18px;
-    line-height: 1.9;
+    font-size: 18px !important;
+    line-height: 1.9 !important;
   }
 
   .exp-section__heading {
-    font-size: 36px;
+    font-size: 36px !important;
   }
 
   .exp-metrics {
@@ -666,29 +666,29 @@ $muted: rgba(255, 255, 255, 0.4);
     padding: 18px 20px;
 
     strong {
-      font-size: 28px;
+      font-size: 28px !important;
     }
 
     span {
-      font-size: 13px;
+      font-size: 13px !important;
     }
   }
 
   .timeline__card-header h3 {
-    font-size: 22px;
+    font-size: 22px !important;
   }
 
   .timeline__company {
-    font-size: 15px;
+    font-size: 15px !important;
   }
 
   .timeline__bullets li {
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 16px !important;
+    line-height: 1.8 !important;
   }
 
   .tag {
-    font-size: 13px;
+    font-size: 13px !important;
     padding: 4px 12px;
   }
 
