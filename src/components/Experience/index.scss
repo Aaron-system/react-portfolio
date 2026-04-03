@@ -219,10 +219,11 @@ $muted: rgba(255, 255, 255, 0.4);
   }
 
   &__tag {
-    font-family: 'La Belle Aurore';
-    font-size: 20px;
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 20px !important;
     color: $muted;
     font-weight: 400;
+    line-height: 1;
   }
 }
 
@@ -665,9 +666,8 @@ $muted: rgba(255, 255, 255, 0.4);
     gap: 10px;
   }
 
-  /* La Belle Aurore has a small x-height — scale up to compensate at tablet sizes */
   .exp-section__tag {
-    font-size: 26px;
+    font-size: 26px !important;
   }
 
   .timeline__item {
@@ -750,9 +750,8 @@ $muted: rgba(255, 255, 255, 0.4);
     gap: 8px;
   }
 
-  /* Scale up La Belle Aurore to stay readable on small phones */
   .exp-section__tag {
-    font-size: 24px;
+    font-size: 24px !important;
   }
 
   .timeline__card {
