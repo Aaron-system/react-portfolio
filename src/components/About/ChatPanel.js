@@ -140,7 +140,9 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
   const activeBoxRef = boxRef || localBoxRef;
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messages.length > 1) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
 
   useEffect(() => {
