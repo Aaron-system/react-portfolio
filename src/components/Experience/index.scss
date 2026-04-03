@@ -129,6 +129,10 @@ $muted: rgba(255, 255, 255, 0.4);
     font-weight: 400;
     margin: 0 0 24px;
     white-space: nowrap;
+
+    span {
+      min-width: 0;
+    }
   }
 
   &__summary {
