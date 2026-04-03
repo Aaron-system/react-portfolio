@@ -77,6 +77,9 @@ const Contact = () => {
                         in law and beyond. Whether it&apos;s a new project, collaboration, or
                         just a conversation about tech, I&apos;d love to hear from you.
                     </p>
+                    <p className="contact-availability">
+                        I&apos;m also open to <strong>consulting</strong>, <strong>contract</strong>, and <strong>freelance</strong> engagements &mdash; feel free to reach out.
+                    </p>
 
 
                     <div className='contact-form'>

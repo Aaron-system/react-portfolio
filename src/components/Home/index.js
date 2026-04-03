@@ -54,6 +54,7 @@ const Home = () => {
                     <p className="credibility-strip">
                         <span>Legal Software Engineer</span>
                         <span>Freelance</span>
+                        <span>Open to Consulting &amp; Contract</span>
                     </p>
                     <a
                         href="https://github.com/Aaron-system"

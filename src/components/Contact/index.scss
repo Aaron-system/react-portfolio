@@ -38,8 +38,21 @@
       font-family: 'sans-serif';
       font-weight: 300;
       line-height: 1.8;
-      margin-bottom: 36px;
+      margin-bottom: 20px;
       max-width: 520px;
+    }
+
+    .contact-availability {
+      font-size: 15px;
+      color: #888;
+      border-left: 3px solid #ffd700;
+      padding-left: 12px;
+      margin-bottom: 30px;
+
+      strong {
+        color: #ffd700;
+        font-weight: 600;
+      }
     }
   }
 
