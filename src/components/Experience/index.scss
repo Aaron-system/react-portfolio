@@ -638,11 +638,7 @@ $muted: rgba(255, 255, 255, 0.4);
   }
 
   .exp-hero h1 {
-    font-size: 38px;
-  }
-
-  .exp-hero__summary {
-    font-size: 14px;
+    font-size: 48px;
   }
 
   .exp-metrics {
@@ -655,17 +651,8 @@ $muted: rgba(255, 255, 255, 0.4);
     padding: 12px 14px;
 
     strong {
-      font-size: 18px;
+      font-size: 20px;
     }
-
-    span {
-      font-size: 11px;
-    }
-  }
-
-  .exp-section__heading {
-    font-size: 22px;
-    gap: 10px;
   }
 
   .timeline__item {
