@@ -644,7 +644,15 @@ $muted: rgba(255, 255, 255, 0.4);
   }
 
   .exp-hero h1 {
-    font-size: 48px;
+    font-size: 52px;
+  }
+
+  .exp-hero__summary {
+    font-size: 16px;
+  }
+
+  .exp-section__heading {
+    font-size: 28px;
   }
 
   .exp-metrics {
@@ -654,11 +662,23 @@ $muted: rgba(255, 255, 255, 0.4);
   }
 
   .exp-metric-card {
-    padding: 12px 14px;
+    padding: 14px 16px;
 
     strong {
-      font-size: 20px;
+      font-size: 22px;
     }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .timeline__card-header h3 {
+    font-size: 20px;
+  }
+
+  .timeline__bullets li {
+    font-size: 14px;
   }
 
   /* Section heading stays inline and scales the tag up to stay visible */
