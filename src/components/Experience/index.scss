@@ -212,8 +212,10 @@ $muted: rgba(255, 255, 255, 0.4);
     font-weight: 400;
     margin-bottom: 32px;
     display: flex;
-    align-items: center;
-    gap: 14px;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    gap: 10px;
   }
 
   &__tag {
@@ -730,9 +732,9 @@ $muted: rgba(255, 255, 255, 0.4);
 
   .exp-section__heading {
     font-size: 19px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 8px;
   }
 
   .timeline__card {
