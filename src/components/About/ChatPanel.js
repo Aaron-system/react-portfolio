@@ -322,29 +322,8 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
                 </div>
               )}
 
-              <div className="chat-panel__input-row">
-                <input
-                  type="text"
-                  className="chat-panel__input"
-                  placeholder={isStreaming ? 'Thinking...' : 'Ask me anything...'}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  disabled={isStreaming}
-                />
-                <button
-                  type="button"
-                  className="chat-panel__send"
-                  onClick={() => handleSend()}
-                  aria-label="Send"
-                  disabled={isStreaming}
-                >
-                  &#x27A4;
-                </button>
-              </div>
-
               <p className="chat-panel__footer">
-                Powered by Claude AI &bull; Built with FastAPI
+                Select a prompt above to chat
               </p>
             </>
           )}
