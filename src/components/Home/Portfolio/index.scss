@@ -48,7 +48,7 @@
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         .card-grid {
             grid-template-columns: 1fr;
         }
@@ -606,7 +606,7 @@ a.card--linked {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .portfolio-panel {
         padding-bottom: 12px;
     }

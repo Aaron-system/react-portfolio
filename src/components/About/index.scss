@@ -22,7 +22,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .about-page {
     /* sidebar is at bottom on mobile — no left offset needed */
     padding: 20px 20px 80px 20px;
@@ -46,7 +46,7 @@
   pointer-events: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .about-top-tag,
   .about-bottom-tag {
     display: none;
@@ -413,7 +413,7 @@
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .avatar-tap-hint {
     display: block;
   }
@@ -684,14 +684,14 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .pixel-scene {
     display: none;
   }
 }
 
 // ── Mobile responsive ─────────────────────────────────────────────────────────
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .about-page h1 {
     font-size: 36px;
     white-space: normal;

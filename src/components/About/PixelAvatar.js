@@ -115,7 +115,7 @@ function getActiveZone(x, sceneW) {
 // Only use matchMedia (viewport width), NOT ontouchstart — touchscreen laptops
 // report ontouchstart=true but are still desktop and need keyboard controls.
 const isMobileDevice = () =>
-  window.matchMedia('(max-width: 768px)').matches;
+  window.matchMedia('(max-width: 1024px)').matches;
 
 const PixelAvatar = ({ zone, boxRef, sceneRef, onEscapeBox, onZoneChange, onReachEnd }) => {
   // Stable ref so animation loop always sees the current value
