@@ -681,21 +681,6 @@ $muted: rgba(255, 255, 255, 0.4);
     font-size: 14px;
   }
 
-  /* Section heading stays inline and scales the tag up to stay visible */
-  .exp-section__heading {
-    font-size: 22px;
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 10px;
-  }
-
-  .exp-section__tag {
-    font-size: 40px !important;
-    line-height: 1 !important;
-    vertical-align: bottom !important;
-    display: inline !important;
-  }
-
   .timeline__item {
     gap: 14px;
   }
@@ -712,10 +697,6 @@ $muted: rgba(255, 255, 255, 0.4);
   .timeline__right {
     align-items: flex-start;
     text-align: left;
-  }
-
-  .timeline__bullets li {
-    font-size: 13px;
   }
 
   .project-grid {
