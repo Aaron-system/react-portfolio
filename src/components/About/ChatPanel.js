@@ -128,7 +128,6 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
   const [messages, setMessages] = useState([
     { role: 'assistant', text: defaultGreeting },
   ]);
-  const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(true);
   const [isStreaming, setIsStreaming] = useState(false);
   const [terminalLines, setTerminalLines] = useState([]);
@@ -168,13 +167,12 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
   }, [terminalVisible]);
 
   const handleSend = async (text) => {
-    const trimmed = (text || input).trim();
+    const trimmed = (text || '').trim();
     if (!trimmed || isStreaming) return;
 
     const userMsg = { role: 'user', text: trimmed };
     const updatedMessages = [...messages, userMsg];
     setMessages(updatedMessages);
-    setInput('');
 
     // Try local responder first for instant answers on exact matches
     const localAnswer = localResponder(trimmed);
@@ -221,12 +219,6 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
 
   const inChatZone = activeZone?.id === 'chat';
   const showTerminal = avatarZone === 'scene' && terminalLines.length > 0 && !inChatZone;
