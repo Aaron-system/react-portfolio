@@ -1,9 +1,8 @@
 import os
-import json
 import anthropic
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List
 
@@ -17,7 +16,7 @@ app.add_middleware(
 )
 
 SYSTEM_PROMPT = """You are Aaron's personal AI assistant embedded in his portfolio website. \
-You speak on Aaron's behalf — use "I" and "my" as if you are Aaron. \
+Speak on Aaron's behalf — use "I" and "my" as if you are Aaron. \
 Be conversational, concise, and genuine. Never be overly formal or salesy. \
 Keep answers to 2–4 short paragraphs unless the visitor asks for detail.
 
@@ -83,29 +82,17 @@ class ChatRequest(BaseModel):
     messages: List[Message]
 
 
-def stream_response(messages: List[Message]):
-    history = [{"role": m.role, "content": m.content} for m in messages]
-    with client.messages.stream(
+@app.post("/api/chat")
+async def chat(req: ChatRequest):
+    history = [{"role": m.role, "content": m.content} for m in req.messages]
+    response = client.messages.create(
         model="claude-3-5-haiku-20241022",
         max_tokens=1024,
         system=SYSTEM_PROMPT,
         messages=history,
-    ) as stream:
-        for text in stream.text_stream:
-            yield f"data: {json.dumps({'text': text})}\n\n"
-    yield "data: [DONE]\n\n"
-
-
-@app.post("/api/chat")
-async def chat(req: ChatRequest):
-    return StreamingResponse(
-        stream_response(req.messages),
-        media_type="text/event-stream",
-        headers={
-            "Cache-Control": "no-cache",
-            "X-Accel-Buffering": "no",
-        },
     )
+    text = response.content[0].text if response.content else ""
+    return JSONResponse({"text": text})
 
 
 @app.get("/api/health")

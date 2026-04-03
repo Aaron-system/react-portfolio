@@ -137,7 +137,6 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
   const messagesEndRef = useRef(null);
   const terminalEndRef = useRef(null);
   const localBoxRef = useRef(null);
-  const abortRef = useRef(null);
 
   const activeBoxRef = boxRef || localBoxRef;
 
@@ -184,15 +183,11 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
       return;
     }
 
-    // Use the AI API with streaming
+    // Use the AI API
     setIsStreaming(true);
-    const assistantMsg = { role: 'assistant', text: '' };
-    setMessages((prev) => [...prev, assistantMsg]);
+    setMessages((prev) => [...prev, { role: 'assistant', text: '' }]);
 
     try {
-      const controller = new AbortController();
-      abortRef.current = controller;
-
       const apiMessages = updatedMessages.map((m) => ({
         role: m.role,
         content: m.text,
@@ -202,54 +197,27 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: apiMessages }),
-        signal: controller.signal,
       });
 
       if (!res.ok) throw new Error(`API error ${res.status}`);
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n');
-        buffer = lines.pop();
-
-        for (const line of lines) {
-          if (!line.startsWith('data: ')) continue;
-          const payload = line.slice(6).trim();
-          if (payload === '[DONE]') break;
-          try {
-            const { text } = JSON.parse(payload);
-            setMessages((prev) => {
-              const next = [...prev];
-              next[next.length - 1] = {
-                ...next[next.length - 1],
-                text: next[next.length - 1].text + text,
-              };
-              return next;
-            });
-          } catch (_) {}
-        }
-      }
+      const { text } = await res.json();
+      setMessages((prev) => {
+        const next = [...prev];
+        next[next.length - 1] = { role: 'assistant', text };
+        return next;
+      });
     } catch (err) {
-      if (err.name !== 'AbortError') {
-        setMessages((prev) => {
-          const next = [...prev];
-          next[next.length - 1] = {
-            role: 'assistant',
-            text: "I'm having trouble connecting right now. Try one of the suggested prompts or reach out via the Contact page.",
-          };
-          return next;
-        });
-      }
+      setMessages((prev) => {
+        const next = [...prev];
+        next[next.length - 1] = {
+          role: 'assistant',
+          text: "I'm having trouble connecting right now. Try one of the suggested prompts or reach out via the Contact page.",
+        };
+        return next;
+      });
     } finally {
       setIsStreaming(false);
-      abortRef.current = null;
     }
   };
 
@@ -322,19 +290,12 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
                     key={i}
                     className={`chat-bubble chat-bubble--${msg.role}`}
                   >
-                    {msg.text}
-                    {isStreaming && i === messages.length - 1 && msg.role === 'assistant' && (
-                      <span className="chat-cursor">▋</span>
+                    {msg.text || (isStreaming && i === messages.length - 1 && msg.role === 'assistant'
+                      ? <span className="thinking-dots"><span /><span /><span /></span>
+                      : null
                     )}
                   </div>
                 ))}
-                {isStreaming && messages[messages.length - 1]?.text === '' && (
-                  <div className="chat-bubble chat-bubble--assistant chat-bubble--thinking">
-                    <span className="thinking-dots">
-                      <span /><span /><span />
-                    </span>
-                  </div>
-                )}
                 <div ref={messagesEndRef} />
               </div>
             </div>

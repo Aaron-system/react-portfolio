@@ -2,12 +2,7 @@
     root * /srv
 
     handle /api/* {
-        reverse_proxy portfolio-api:8000 {
-            flush_interval -1
-            transport http {
-                versions 1.1
-            }
-        }
+        reverse_proxy portfolio-api:8000
     }
 
     handle {
