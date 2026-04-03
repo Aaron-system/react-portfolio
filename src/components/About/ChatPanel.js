@@ -103,6 +103,8 @@ const ZONE_TERMINAL = {
   },
 };
 
+const API_URL = '/api/chat';
+
 const localResponder = (question) => {
   const normalised = question.trim().toLowerCase();
 
@@ -119,21 +121,23 @@ const localResponder = (question) => {
     if (matches.length >= 2) return answer;
   }
 
-  return "Great question! I'm upgrading this chat with a real AI backend soon. In the meantime, try one of the suggested prompts above.";
+  return null;
 };
 
-const ChatPanel = ({ responder = localResponder, boxRef, avatarZone, onEscapeBox, activeZone }) => {
+const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
   const [messages, setMessages] = useState([
     { role: 'assistant', text: defaultGreeting },
   ]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(true);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [terminalLines, setTerminalLines] = useState([]);
   const [terminalVisible, setTerminalVisible] = useState(0);
   const [usedPrompts, setUsedPrompts] = useState(new Set());
   const messagesEndRef = useRef(null);
   const terminalEndRef = useRef(null);
   const localBoxRef = useRef(null);
+  const abortRef = useRef(null);
 
   const activeBoxRef = boxRef || localBoxRef;
 
@@ -166,14 +170,87 @@ const ChatPanel = ({ responder = localResponder, boxRef, avatarZone, onEscapeBox
 
   const handleSend = async (text) => {
     const trimmed = (text || input).trim();
-    if (!trimmed) return;
+    if (!trimmed || isStreaming) return;
 
     const userMsg = { role: 'user', text: trimmed };
-    setMessages((prev) => [...prev, userMsg]);
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
     setInput('');
 
-    const answer = await Promise.resolve(responder(trimmed));
-    setMessages((prev) => [...prev, { role: 'assistant', text: answer }]);
+    // Try local responder first for instant answers on exact matches
+    const localAnswer = localResponder(trimmed);
+    if (localAnswer) {
+      setMessages((prev) => [...prev, { role: 'assistant', text: localAnswer }]);
+      return;
+    }
+
+    // Use the AI API with streaming
+    setIsStreaming(true);
+    const assistantMsg = { role: 'assistant', text: '' };
+    setMessages((prev) => [...prev, assistantMsg]);
+
+    try {
+      const controller = new AbortController();
+      abortRef.current = controller;
+
+      const apiMessages = updatedMessages.map((m) => ({
+        role: m.role,
+        content: m.text,
+      }));
+
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiMessages }),
+        signal: controller.signal,
+      });
+
+      if (!res.ok) throw new Error(`API error ${res.status}`);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop();
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const payload = line.slice(6).trim();
+          if (payload === '[DONE]') break;
+          try {
+            const { text } = JSON.parse(payload);
+            setMessages((prev) => {
+              const next = [...prev];
+              next[next.length - 1] = {
+                ...next[next.length - 1],
+                text: next[next.length - 1].text + text,
+              };
+              return next;
+            });
+          } catch (_) {}
+        }
+      }
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        setMessages((prev) => {
+          const next = [...prev];
+          next[next.length - 1] = {
+            role: 'assistant',
+            text: "I'm having trouble connecting right now. Try one of the suggested prompts or reach out via the Contact page.",
+          };
+          return next;
+        });
+      }
+    } finally {
+      setIsStreaming(false);
+      abortRef.current = null;
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -246,8 +323,18 @@ const ChatPanel = ({ responder = localResponder, boxRef, avatarZone, onEscapeBox
                     className={`chat-bubble chat-bubble--${msg.role}`}
                   >
                     {msg.text}
+                    {isStreaming && i === messages.length - 1 && msg.role === 'assistant' && (
+                      <span className="chat-cursor">▋</span>
+                    )}
                   </div>
                 ))}
+                {isStreaming && messages[messages.length - 1]?.text === '' && (
+                  <div className="chat-bubble chat-bubble--assistant chat-bubble--thinking">
+                    <span className="thinking-dots">
+                      <span /><span /><span />
+                    </span>
+                  </div>
+                )}
                 <div ref={messagesEndRef} />
               </div>
             </div>
@@ -278,23 +365,25 @@ const ChatPanel = ({ responder = localResponder, boxRef, avatarZone, onEscapeBox
                 <input
                   type="text"
                   className="chat-panel__input"
-                  placeholder="Type your question..."
+                  placeholder={isStreaming ? 'Thinking...' : 'Ask me anything...'}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
+                  disabled={isStreaming}
                 />
                 <button
                   type="button"
                   className="chat-panel__send"
                   onClick={() => handleSend()}
                   aria-label="Send"
+                  disabled={isStreaming}
                 >
                   &#x27A4;
                 </button>
               </div>
 
               <p className="chat-panel__footer">
-                Powered by AI &bull; Built with Python + FastAPI
+                Powered by Claude AI &bull; Built with FastAPI
               </p>
             </>
           )}

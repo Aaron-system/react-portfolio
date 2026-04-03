@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Portfolio API env
+.env
+portfolio-api/__pycache__/

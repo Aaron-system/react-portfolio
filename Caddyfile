@@ -1,5 +1,12 @@
 :3002 {
     root * /srv
-    file_server
-    try_files {path} /index.html
+
+    handle /api/* {
+        reverse_proxy portfolio-api:8000
+    }
+
+    handle {
+        file_server
+        try_files {path} /index.html
+    }
 }

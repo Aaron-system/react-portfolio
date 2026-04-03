@@ -9,3 +9,11 @@ services:
     restart: unless-stopped
     networks:
       - proxy-net
+
+  portfolio-api:
+    build: ./portfolio-api
+    restart: unless-stopped
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    networks:
+      - proxy-net
