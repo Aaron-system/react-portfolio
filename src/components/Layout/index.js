@@ -2,11 +2,16 @@ import './index.scss'
 import Sidebar from '../Sidebar'
 import { Outlet, useLocation } from 'react-router-dom'
 import FloatingLines from '../FloatingLines'
+import { useEffect } from 'react'
 
 const Layout = () => {
     const { pathname } = useLocation()
     const isExperiencePage = pathname === '/experience'
     const isAboutPage = pathname === '/about'
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
 
     return (
         <div className="App">
