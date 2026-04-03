@@ -644,41 +644,52 @@ $muted: rgba(255, 255, 255, 0.4);
   }
 
   .exp-hero h1 {
-    font-size: 52px;
+    font-size: 64px;
   }
 
   .exp-hero__summary {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.9;
   }
 
   .exp-section__heading {
-    font-size: 28px;
+    font-size: 36px;
   }
 
   .exp-metrics {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 24px;
   }
 
   .exp-metric-card {
-    padding: 14px 16px;
+    padding: 18px 20px;
 
     strong {
-      font-size: 22px;
+      font-size: 28px;
     }
 
     span {
-      font-size: 12px;
+      font-size: 13px;
     }
   }
 
   .timeline__card-header h3 {
-    font-size: 20px;
+    font-size: 22px;
+  }
+
+  .timeline__company {
+    font-size: 15px;
   }
 
   .timeline__bullets li {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .tag {
+    font-size: 13px;
+    padding: 4px 12px;
   }
 
   .timeline__item {

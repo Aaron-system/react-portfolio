@@ -76,7 +76,7 @@
         grid-template-columns: 1fr;
 
         h1 {
-            font-size: clamp(36px, 8vw, 53px);
+            font-size: clamp(42px, 9vw, 64px);
 
             &::before,
             &::after {
@@ -86,24 +86,25 @@
     }
 
     h2 {
-        font-size: 16px !important;
+        font-size: 20px !important;
         letter-spacing: 1px !important;
-        margin-top: 16px !important;
+        margin-top: 20px !important;
+        line-height: 1.6 !important;
     }
 
     .credibility-strip {
-        font-size: 13px !important;
-        margin-top: 12px !important;
+        font-size: 15px !important;
+        margin-top: 14px !important;
     }
 
     .flat-button {
-        font-size: 13px !important;
+        font-size: 15px !important;
         letter-spacing: 3px !important;
-        padding: 10px 20px !important;
+        padding: 12px 24px !important;
     }
 
     .github-link {
-        font-size: 13px !important;
+        font-size: 15px !important;
     }
 }
 
