@@ -15,6 +15,50 @@ DOCS = [
     ("ADDING_PROJECTS.md",        "Adding Projects to the Portfolio"),
 ]
 
+# ── Sanitization ─────────────────────────────────────────────────────────────
+# Applied before rendering so generated HTML contains no personal info.
+# Order matters — more specific patterns first.
+REDACTIONS = [
+    # Server IP
+    ("204.168.177.22",                          "YOUR_SERVER_IP"),
+    # Subdomains (before root domain so they don't partially match)
+    ("horizonlegaldocs.online",                 "yourproject.com"),
+    ("docs.aaronk.tech",                        "docs.yourdomain.com"),
+    ("arbiter.aaronk.tech",                     "arbiter.yourdomain.com"),
+    ("blockchain-node.aaronk.tech",             "blockchain-node.yourdomain.com"),
+    ("blockchain-wallet.aaronk.tech",           "blockchain-wallet.yourdomain.com"),
+    ("blockchain.aaronk.tech",                  "blockchain.yourdomain.com"),
+    ("newproject.aaronk.tech",                  "newproject.yourdomain.com"),
+    ("www.aaronk.tech",                         "www.yourdomain.com"),
+    ("aaronk.tech",                             "yourdomain.com"),
+    # GitHub
+    ("github.com/Aaron-system",                 "github.com/your-username"),
+    ("Aaron-system",                            "your-username"),
+    # Paths that mention portfolio specifically
+    ("/opt/portfolio",                          "/opt/yourproject"),
+    ("C:\\portfolio\\your-project",             "C:\\path\\to\\your-project"),
+    ("C:\\portfolio\\react-portfolio",          "C:\\path\\to\\your-project"),
+    # Resume file
+    ("Aaron_Kreidieh_Resume_2026.docx",         "Your_Resume.docx"),
+    # Full name
+    ("Aaron Kreidieh's React portfolio",        "your React portfolio"),
+    ("Aaron Kreidieh",                          "[Your Name]"),
+    ("Aaron K",                                 "[Your Name]"),
+    # First name references in prose
+    ("in Aaron Kreidieh",                       "in [Your Name]"),
+    # Email
+    ("aaron.kreidieh@gmail.com",                "your@email.com"),
+    # Top bar brand in generated HTML
+    ("aaronk.tech",                             "yourdomain.com"),  # catch any leftovers
+]
+
+
+def sanitize_content(text):
+    """Replace all personal info with generic placeholders."""
+    for personal, generic in REDACTIONS:
+        text = text.replace(personal, generic)
+    return text
+
 CSS = """
   :root {
     --bg:       #111113;
@@ -537,8 +581,8 @@ def convert_md_to_html(md_text, title):
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="topbar-brand"><span>aaronk.tech</span> &nbsp;/&nbsp; Documentation</div>
+    <header class="topbar">
+    <div class="topbar-brand"><span>Hetzner VPS</span> &nbsp;/&nbsp; Deployment Guide</div>
     <div class="topbar-date">{today}</div>
   </header>
 
@@ -551,12 +595,9 @@ def convert_md_to_html(md_text, title):
     <main class="content">
 
       <div class="cover">
-        <div class="cover-label">aaronk.tech &nbsp;&mdash;&nbsp; Technical Documentation</div>
+        <div class="cover-label">Hetzner VPS &nbsp;&mdash;&nbsp; Technical Documentation</div>
         <h1>{escape(title)}</h1>
-        <div class="cover-meta">
-          Generated {today} &nbsp;&bull;&nbsp;
-          <a href="https://aaronk.tech" target="_blank">aaronk.tech</a>
-        </div>
+        <div class="cover-meta">Generated {today}</div>
       </div>
 
       {body_html}
@@ -580,7 +621,9 @@ if __name__ == "__main__":
             continue
         with open(md_path, encoding="utf-8") as f:
             md_text = f.read()
+        md_text = sanitize_content(md_text)
         html_out = convert_md_to_html(md_text, title)
+        html_out = sanitize_content(html_out)
         with open(html_path, "w", encoding="utf-8") as f:
             f.write(html_out)
         size_kb = round(os.path.getsize(html_path) / 1024, 1)
