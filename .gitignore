@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Generated PDF exports (regenerate locally with: python docs/convert_to_pdf.py)
+docs/*.pdf
+
 # dependencies
 /node_modules
 /.pnp
