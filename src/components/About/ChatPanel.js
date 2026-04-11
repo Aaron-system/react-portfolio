@@ -103,7 +103,6 @@ const ZONE_TERMINAL = {
   },
 };
 
-const API_URL = '/api/chat';
 
 const localResponder = (question) => {
   const normalised = question.trim().toLowerCase();
@@ -129,7 +128,7 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
     { role: 'assistant', text: defaultGreeting },
   ]);
   const [isOpen, setIsOpen] = useState(true);
-  const [isStreaming, setIsStreaming] = useState(false);
+  const [isStreaming] = useState(false);
   const [terminalLines, setTerminalLines] = useState([]);
   const [terminalVisible, setTerminalVisible] = useState(0);
   const [usedPrompts, setUsedPrompts] = useState(new Set());
@@ -168,57 +167,21 @@ const ChatPanel = ({ boxRef, avatarZone, onEscapeBox, activeZone }) => {
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [terminalVisible]);
 
-  const handleSend = async (text) => {
+  const handleSend = (text) => {
     const trimmed = (text || '').trim();
     if (!trimmed || isStreaming) return;
 
     const userMsg = { role: 'user', text: trimmed };
-    const updatedMessages = [...messages, userMsg];
-    setMessages(updatedMessages);
+    setMessages((prev) => [...prev, userMsg]);
 
-    // Try local responder first for instant answers on exact matches
     const localAnswer = localResponder(trimmed);
-    if (localAnswer) {
-      setMessages((prev) => [...prev, { role: 'assistant', text: localAnswer }]);
-      return;
-    }
-
-    // Use the AI API
-    setIsStreaming(true);
-    setMessages((prev) => [...prev, { role: 'assistant', text: '' }]);
-
-    try {
-      const apiMessages = updatedMessages.map((m) => ({
-        role: m.role,
-        content: m.text,
-      }));
-
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: apiMessages }),
-      });
-
-      if (!res.ok) throw new Error(`API error ${res.status}`);
-
-      const { text } = await res.json();
-      setMessages((prev) => {
-        const next = [...prev];
-        next[next.length - 1] = { role: 'assistant', text };
-        return next;
-      });
-    } catch (err) {
-      setMessages((prev) => {
-        const next = [...prev];
-        next[next.length - 1] = {
-          role: 'assistant',
-          text: "I'm having trouble connecting right now. Try one of the suggested prompts or reach out via the Contact page.",
-        };
-        return next;
-      });
-    } finally {
-      setIsStreaming(false);
-    }
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: 'assistant',
+        text: localAnswer || "Check out the suggested prompts above, or head to the Contact page to get in touch.",
+      },
+    ]);
   };
 
 

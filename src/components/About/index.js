@@ -12,6 +12,7 @@ import {
   faGitAlt,
 } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import ChatPanel from './ChatPanel';
 import PixelAvatar from './PixelAvatar';
 import { skillTags } from './content';
 import pixelBg from '../../platform.png';
@@ -196,7 +197,12 @@ const About = () => {
         </div>
 
         <div className="about-right">
-          {/* ChatPanel temporarily disabled pending Google Safe Browsing review */}
+          <ChatPanel
+            boxRef={boxRef}
+            avatarZone={avatarZone}
+            onEscapeBox={handleEscapeBox}
+            activeZone={activeZone}
+          />
           <Link to="/contact" className="about-contact-btn">
             Contact Me
           </Link>
