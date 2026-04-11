@@ -197,12 +197,7 @@ const About = () => {
         </div>
 
         <div className="about-right">
-          <ChatPanel
-            boxRef={boxRef}
-            avatarZone={avatarZone}
-            onEscapeBox={handleEscapeBox}
-            activeZone={activeZone}
-          />
+          {/* ChatPanel temporarily disabled pending Google Safe Browsing review */}
           <Link to="/contact" className="about-contact-btn">
             Contact Me
           </Link>
