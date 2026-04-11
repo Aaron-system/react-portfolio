@@ -12,7 +12,6 @@ import {
   faGitAlt,
 } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
-import ChatPanel from './ChatPanel';
 import PixelAvatar from './PixelAvatar';
 import { skillTags } from './content';
 import pixelBg from '../../platform.png';
