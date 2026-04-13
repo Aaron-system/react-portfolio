@@ -1,19 +1,42 @@
 import os
+import time
+from collections import defaultdict
 import anthropic
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from typing import List
 
-app = FastAPI()
+ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "https://aaronk.tech,https://www.aaronk.tech").split(",")
+
+MAX_MESSAGE_LENGTH = 2000
+MAX_MESSAGES = 20
+RATE_LIMIT_WINDOW = 60  # seconds
+RATE_LIMIT_MAX = 10     # requests per window
+
+app = FastAPI(docs_url=None, redoc_url=None)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_methods=["POST", "OPTIONS"],
-    allow_headers=["*"],
+    allow_headers=["Content-Type"],
 )
+
+# ── In-memory rate limiter ────────────────────────────────────────────────────
+_rate_store: dict[str, list[float]] = defaultdict(list)
+
+
+def _is_rate_limited(client_ip: str) -> bool:
+    now = time.time()
+    timestamps = _rate_store[client_ip]
+    _rate_store[client_ip] = [t for t in timestamps if now - t < RATE_LIMIT_WINDOW]
+    if len(_rate_store[client_ip]) >= RATE_LIMIT_MAX:
+        return True
+    _rate_store[client_ip].append(now)
+    return False
+
 
 SYSTEM_PROMPT = """You are Aaron's personal AI assistant embedded in his portfolio website. \
 Speak on Aaron's behalf — use "I" and "my" as if you are Aaron. \
@@ -77,13 +100,40 @@ class Message(BaseModel):
     role: str
     content: str
 
+    @field_validator("role")
+    @classmethod
+    def validate_role(cls, v: str) -> str:
+        if v not in ("user", "assistant"):
+            raise ValueError("role must be 'user' or 'assistant'")
+        return v
+
+    @field_validator("content")
+    @classmethod
+    def validate_content(cls, v: str) -> str:
+        if len(v) > MAX_MESSAGE_LENGTH:
+            raise ValueError(f"message content exceeds {MAX_MESSAGE_LENGTH} characters")
+        return v
+
 
 class ChatRequest(BaseModel):
     messages: List[Message]
 
+    @field_validator("messages")
+    @classmethod
+    def validate_messages(cls, v: list) -> list:
+        if len(v) > MAX_MESSAGES:
+            raise ValueError(f"too many messages (max {MAX_MESSAGES})")
+        if not v:
+            raise ValueError("messages cannot be empty")
+        return v
+
 
 @app.post("/api/chat")
-async def chat(req: ChatRequest):
+async def chat(req: ChatRequest, request: Request):
+    client_ip = request.headers.get("X-Forwarded-For", request.client.host).split(",")[0].strip()
+    if _is_rate_limited(client_ip):
+        raise HTTPException(status_code=429, detail="Rate limit exceeded. Try again in a minute.")
+
     history = [{"role": m.role, "content": m.content} for m in req.messages]
     response = client.messages.create(
         model="claude-3-5-haiku-20241022",

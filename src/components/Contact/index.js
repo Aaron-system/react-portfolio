@@ -16,9 +16,9 @@ const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
 
-    const emailServiceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_8w4muzx';
-    const emailTemplateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_ll12y5w';
-    const emailPublicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '6k5ociAeUUYISgV_7';
+    const emailServiceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const emailTemplateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const emailPublicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
 
     useEffect(() => {
