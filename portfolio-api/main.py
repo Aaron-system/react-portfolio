@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, field_validator
 from typing import List
 
-ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "https://aaronk.tech,https://www.aaronk.tech").split(",")
+ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "https://aaronk.dev,https://www.aaronk.dev").split(",")
 
 MAX_MESSAGE_LENGTH = 2000
 MAX_MESSAGES = 20
@@ -53,7 +53,7 @@ Key stats: 40%+ review time reduced, 95% content automation gain, instant retrie
 
 --- PROJECTS ---
 
-1. Arbiter Legal AI (arbiter.aaronk.tech)
+1. Arbiter Legal AI (arbiter.aaronk.dev)
    A multi-model legal AI research assistant built using RAG and hybrid retrieval. \
    It runs specialised sub-agents for different areas of Evidence Law (NSW) — hearsay, opinion, \
    tendency & coincidence, identification evidence, etc. Each sub-agent has structured test registries \
@@ -61,7 +61,7 @@ Key stats: 40%+ review time reduced, 95% content automation gain, instant retrie
    Stack: FastAPI, Python, Claude (Anthropic), FAISS vector search, BM25, ColBERT reranking, \
    React + TypeScript frontend, SQLite chat history, Docker, Hetzner VPS, Caddy.
 
-2. Horizon Legal Docs (docs.aaronk.tech)
+2. Horizon Legal Docs (docs.aaronk.dev)
    A production legal document automation platform built end to end. \
    Ingests legal documents, runs multi-phase clause extraction, flags risk areas, \
    checks compliance, and auto-generates citations. \

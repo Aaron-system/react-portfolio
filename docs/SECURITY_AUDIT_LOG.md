@@ -7,14 +7,14 @@ Use this as a template for each new project.
 
 ## 2026-04-09 — Full Security Hardening (Post-Incident)
 
-**Trigger:** Google Safe Browsing flagged `aaronk.tech` as phishing due to an
+**Trigger:** Google Safe Browsing flagged `aaronk.dev` as phishing due to an
 AI chatbot feature. The `.tech` domain registry (Radix) suspended the domain.
 
 ### Phase 1 — Application Code Fixes
 
 | Change | File | Detail |
 |--------|------|--------|
-| Fix CORS wildcard | `portfolio-api/main.py` | `allow_origins=["*"]` changed to explicit `["https://aaronk.tech", "https://www.aaronk.tech"]` via `ALLOWED_ORIGINS` env var |
+| Fix CORS wildcard | `portfolio-api/main.py` | `allow_origins=["*"]` changed to explicit `["https://aaronk.dev", "https://www.aaronk.dev"]` via `ALLOWED_ORIGINS` env var |
 | Add rate limiting | `portfolio-api/main.py` | In-memory rate limiter: 10 requests/minute per IP on `/api/chat` |
 | Add input validation | `portfolio-api/main.py` | Max 2000 chars per message, max 20 messages, role must be `user` or `assistant` |
 | Disable API docs | `portfolio-api/main.py` | `docs_url=None, redoc_url=None` on FastAPI app |

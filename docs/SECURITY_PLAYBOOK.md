@@ -92,7 +92,7 @@ All projects inherit these headers from the EventHorizon Caddyfile snippet:
 5. Replace `ANTHROPIC_API_KEY=sk-ant-OLD...` with the new key
 6. Restart: `cd /opt/portfolio && docker compose up -d portfolio-api`
 7. Delete the old key from console.anthropic.com
-8. Verify: `curl -s https://aaronk.tech/api/health`
+8. Verify: `curl -s https://aaronk.dev/api/health`
 
 ### EmailJS Keys
 
@@ -224,10 +224,10 @@ docker system df
 
 1. Sign up at [uptimerobot.com](https://uptimerobot.com) (free tier: 50 monitors)
 2. Add HTTP(S) monitors for each active domain:
-   - `https://aaronk.tech`
-   - `https://docs.aaronk.tech`
-   - `https://arbiter.aaronk.tech`
-   - `https://blockchain.aaronk.tech`
+   - `https://aaronk.dev`
+   - `https://docs.aaronk.dev`
+   - `https://arbiter.aaronk.dev`
+   - `https://blockchain.aaronk.dev`
 3. Set check interval to 5 minutes
 4. Add alert contacts: email + SMS (optional)
 5. Enable status page (optional — gives you a public URL to check uptime)
@@ -237,7 +237,7 @@ docker system df
 ## Google Search Console Setup (one-time per domain)
 
 1. Go to [search.google.com/search-console](https://search.google.com/search-console)
-2. Add property -> Domain -> enter `aaronk.tech`
+2. Add property -> Domain -> enter `aaronk.dev`
 3. Verify via DNS TXT record at your registrar:
    - Type: `TXT`
    - Host: `@`

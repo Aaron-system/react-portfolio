@@ -37,7 +37,7 @@ services:
       - /tmp
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-      - ALLOWED_ORIGINS=https://aaronk.tech,https://www.aaronk.tech
+      - ALLOWED_ORIGINS=https://aaronk.dev,https://www.aaronk.dev
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
       interval: 30s
