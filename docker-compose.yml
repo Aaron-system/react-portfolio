@@ -12,13 +12,36 @@ services:
         REACT_APP_EMAILJS_TEMPLATE_ID: ${REACT_APP_EMAILJS_TEMPLATE_ID}
         REACT_APP_EMAILJS_PUBLIC_KEY: ${REACT_APP_EMAILJS_PUBLIC_KEY}
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3002"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - proxy-net
 
   portfolio-api:
     build: ./portfolio-api
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ALLOWED_ORIGINS=https://aaronk.tech,https://www.aaronk.tech
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - proxy-net
