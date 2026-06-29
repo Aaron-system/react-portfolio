@@ -1,184 +1,43 @@
 export const tribeSimulationMeta = {
   title: 'Neural Network Tribe Simulation',
-  subtitle:
-    'Agent-based economic simulation where tribes with evolving neural networks discover chemistry, trade, lend, fight, and invent language — with no central planner.',
   category: 'Rust · Agent Sim · Economics',
   heroImage: '/dvg_tribe_sim.png',
-  mapImage: '/dvg/map_seed_42.png',
-  runLabel: 'Reference run: golden_10k_1 · ~30k ticks · 10,000 starting agents',
+  overview:
+    'The Dynamic Value Gradient (DVG) simulation is a ground-up Rust rebuild where thousands of autonomous agents explore a 2D world with evolving neural networks. They discover chemistry, trade, lend, fight, and invent language — with no central planner. Macro patterns like credit cycles, inequality, and tech eras emerge from millions of local bilateral decisions.',
+  researchLens:
+    'Markets as distributed search over an expandable possibility space — the compound system decides whether the economy stays open-ended or crystallises.',
 };
 
-export const tribeSimulationStats = [
-  { label: 'Bilateral trades', value: '1.77M' },
-  { label: 'Unique goods', value: '255' },
-  { label: 'Service deals', value: '1.45M' },
-  { label: 'Loans', value: '12,914' },
-  { label: 'Emergent compounds', value: '670+' },
-  { label: 'Utterances', value: '2.1M' },
-  { label: 'Word tokens', value: '56' },
-  { label: 'Tech era reached', value: 'Mechanical' },
+export const tribeSimulationStack = [
+  'Rust',
+  'Python',
+  'Agent Simulation',
+  'Hebbian Learning',
+  'Computational Economics',
+  'Event Analysis',
 ];
 
-export const tribeSimulationSections = [
+export const tribeSimulationHighlights = [
+  '1.77M bilateral trades across 255 goods — food barter, coin, and emergent compounds',
+  '670+ compounds discovered via graded chemistry (steel, wine, armor) — no hand-written recipes',
+  '12,914 reputation-indexed loans with boom–bust population cycles (~4,400-tick trough)',
+  '2.1M utterances and evolving brain topologies — language, culture, and cognition co-evolve',
+];
+
+export const tribeSimulationFindings = [
   {
-    id: 'overview',
-    title: 'What it is',
-    tags: ['overview', 'dvg', 'dynamic value gradient', 'agent-based', 'economics', 'emergent'],
-    body: `The Dynamic Value Gradient (DVG) Tribe Simulation is a ground-up Rust rebuild of an earlier Python prototype. Thousands of autonomous agents explore a 2D world, each carrying an evolving neural network. They discover materials, craft compounds, trade, lend, fight, mate, and invent language. No central planner sets prices or outcomes — macro patterns like Gini, credit cycles, and tech eras precipitate from millions of local bilateral decisions.`,
-    bullets: [
-      'Agents act on a value gradient: local deficits and opportunities scored by an analytic objective plus a learned brain bias.',
-      'Cross-agent effects are staged and applied serially each tick — trades, fights, loans, and services are bilateral negotiations.',
-      'Every meaningful interaction is logged as an EventRecord for forensic analysis across 199M+ event runs.',
-    ],
-  },
-  {
-    id: 'brains',
-    title: 'Evolving neural agents',
-    tags: ['brains', 'neural network', 'hebbian', 'rpe', 'learning', 'topology'],
-    body: `Neural networks modulate the gradient scorer — they do not directly pick actions. Learning uses reward prediction error (realized satisfaction) and Hebbian updates. Brain topology grows, mutates, and crosses over across generations.`,
-    bullets: [
-      '2,433 brain topology samples logged in the reference run.',
-      'Networks evolve under RPE-driven plasticity — nodes and edges grow over time.',
-      'Neurochemistry (dopamine, cortisol, oxytocin) biases action selection.',
-    ],
-    image: '/dvg/findings/brain_topology.png',
-    imageCaption: 'Mean brain nodes and connections over time',
-  },
-  {
-    id: 'chemistry',
-    title: 'Graded chemistry & innovation',
-    tags: ['chemistry', 'compounds', 'metallurgy', 'steel', 'innovation', 'crafting'],
-    body: `Materials have 28 continuous graded attributes transformed by processes (smelt, forge, ferment, and more). Compound names emerge from thresholds; duplicates collapse by physical signature. The result is an expandable possibility space rather than hand-written recipes.`,
-    bullets: [
-      '670+ emergent compounds discovered in golden_10k_1 — steel, wine, armor, bronze, and more.',
-      '78 metallic compounds; 59 conductive.',
-      'Innovation frontier tracked per time bin — new compounds still appearing before run stop.',
-    ],
-    image: '/dvg/findings/compound_count.png',
-    imageCaption: 'Emergent compound catalog growth',
-  },
-  {
-    id: 'trade',
-    title: 'Trade & markets',
-    tags: ['trade', 'barter', 'coin', 'markets', 'allocation', 'food'],
-    body: `Bilateral subjective exchange drives allocation. Food barter dominates volume (~82%), but coin transfers and compound goods also appear. Markets here mostly search subsistence allocation while the graded chemistry space remains open for deeper search.`,
-    bullets: [
-      '1,774,453 trade events across 255 unique item types.',
-      '149,906 coin transfer legs; global coin conservation verified.',
-      '4,232 compound trade events including steel, bronze, wine, tools, and armor.',
-    ],
+    title: 'Trade & allocation',
+    caption: 'Bilateral trade volume — subsistence barter, coin, and compound goods',
     image: '/dvg/findings/trade_volume_over_time.png',
-    imageCaption: 'Bilateral trade volume — food, coin, barter, compounds',
   },
   {
-    id: 'credit',
-    title: 'Credit & investment',
-    tags: ['credit', 'loans', 'interest', 'reputation', 'investment', 'finance'],
-    body: `Loans carry reputation-indexed rates; defaults and investments run parallel to barter. Credit moves synchronously with population in this config — a Malthusian-first read where demography drives finance more than credit-led busts.`,
-    bullets: [
-      '12,914 loans · mean rate ~2.84% (1.5%–4.9% by reputation).',
-      '2,688 defaults (20.8%).',
-      '1,957 investments · 8% yield · 1,921 settled.',
-    ],
-    image: '/dvg/findings/credit_over_time.png',
-    imageCaption: 'Active loans and credit outstanding',
+    title: 'Emergent chemistry',
+    caption: 'Compound catalog growth across the reference run',
+    image: '/dvg/findings/compound_count.png',
   },
   {
-    id: 'services',
-    title: 'Service economy',
-    tags: ['services', 'gather', 'protect', 'teach', 'craft', 'attack'],
-    body: `A fixed engine enum defines services: GatherFor, Protect, Teach, CraftFor, AttackFor, StealFor. Service payments in the reference run were observed in food — bilateral negotiation still shapes who fulfills what.`,
-    bullets: [
-      '1,453,184 service deals · ~17% fulfillment rate overall.',
-      'Teach: 200k deals, 26.3% fulfilled.',
-      'Services sit alongside trade and credit as a third allocation channel.',
-    ],
-  },
-  {
-    id: 'language',
-    title: 'Language & knowledge',
-    tags: ['language', 'culture', 'tablets', 'transmission', 'recipe', 'utterances'],
-    body: `Learned signals, optional clay tablets (proto-writing), and recipe teaching as a paid service. Utterances carry speaker state vectors for grounding tests — hunger, dopamine, cortisol, oxytocin.`,
-    bullets: [
-      '2,102,874 utterances · 56 distinct word tokens (bigrams).',
-      '22,972,988 discovery/transmission events.',
-      'Clay tablets enable async recipe and signal spread.',
-    ],
-    image: '/dvg/findings/token_entropy.png',
-    imageCaption: 'Language token entropy — conventionalisation signal',
-  },
-  {
-    id: 'cycles',
-    title: 'Macro cycles & demography',
-    tags: ['cycles', 'population', 'malthusian', 'boom', 'bust', 'gini', 'demography'],
-    body: `Boom–bust cycles with a population trough period around 4,400 ticks. Gini stays relatively stable through crashes while elite composition churns — inequality shape persists but who is rich changes.`,
-    bullets: [
-      '75,480 births · 70,439 deaths · mean age at death ~922 ticks (non-founders).',
-      'Population and credit move synchronously (lag ≈ 0).',
-      'Final population ~161 after famine tail at Mechanical era.',
-    ],
+    title: 'Population cycles',
+    caption: 'Boom–bust dynamics over ~30k simulation ticks',
     image: '/dvg/findings/population_over_time.png',
-    imageCaption: 'Population boom–bust cycles over 30k ticks',
-  },
-  {
-    id: 'hierarchy',
-    title: 'Hierarchy & conflict',
-    tags: ['hierarchy', 'dominance', 'combat', 'elite', 'turnover', 'conflict'],
-    body: `Dominance, combat, hypergamous mating, and command chains produce shifting elites. Macro statistics are snapshots of a search that never fully settles — same Gini, different individuals.`,
-    bullets: [
-      'Elite turnover among survivors — who holds the top changes every cycle.',
-      'Warrior/chief archetypes combine attack orders, trade, and coined words.',
-      'Conflict and cooperation co-evolve through staged bilateral effects.',
-    ],
-    image: '/dvg/findings/hierarchy_turnover.png',
-    imageCaption: 'Elite turnover among survivors',
-  },
-  {
-    id: 'theory',
-    title: 'Markets as Search',
-    tags: ['theory', 'markets as search', 'possibility space', 'crystallisation', 'research'],
-    body: `Working framework: markets are distributed solvers over irreducible allocation problems. The compound system is the possibility space — its openness controls whether the economy crystallises into a dead equilibrium or develops as an open-ended living trajectory.`,
-    bullets: [
-      'Micro is stochastic and path-dependent; macro is what the search precipitates.',
-      'Closed possibility space → crystallisation. Generative space → homeorhesis.',
-      'Institutions steer search by designing constraints, not by overriding outcomes directly.',
-    ],
-    image: '/dvg/findings/population_vs_credit.png',
-    imageCaption: 'Population vs credit — synchronous Malthusian cycle',
-  },
-  {
-    id: 'stack',
-    title: 'Tech stack',
-    tags: ['rust', 'python', 'tech', 'analysis', 'zstd', 'egui', 'pipeline'],
-    body: `Rust simulation engine with Python forensic analysis pipeline. Designed as a research instrument for reproducible runs and hypothesis testing — not a pretrained model API.`,
-    bullets: [
-      'Rust: dvgt_core, dvgt_world, dvgt_agent, dvgt_brain, dvgt_econ, dvgt_sim — zstd event shards, egui menu, CLI.',
-      'Python: dvg_analysis streaming pipeline — trade, credit, language, demography, hierarchy, innovation.',
-      'Pipeline: run → unpack events.jsonl → full analysis plots and CSV exports.',
-    ],
-  },
-  {
-    id: 'agent-2014',
-    title: 'Agent #2014 — warrior/chief',
-    tags: ['story', 'biography', 'warrior', 'chief', 'agent', '2014'],
-    body: `Peak wealth 65.2 · dominance 1.00 · 12 kills · 185 attack orders · 92 trades · coined 3 words. Sold GatherFor, Teach, and Protect services. A war-commander archetype who also participates in markets and language.`,
-    image: '/dvg/biographies/radar_2014_0.png',
-    imageCaption: 'Trait radar — agent #2014',
-  },
-  {
-    id: 'agent-1195',
-    title: 'Agent #1195 — scribe/magnate',
-    tags: ['story', 'biography', 'scribe', 'tablet', 'wealth', '1195'],
-    body: `Peak wealth 112.6 · low dominance 0.23 · 41 trades · inscribed clay tablets with craft knowledge and spoken signs. Magnate/scribe archetype — wealth through knowledge persistence rather than combat.`,
-    image: '/dvg/biographies/radar_1195_2.png',
-    imageCaption: 'Trait radar — agent #1195',
-  },
-  {
-    id: 'agent-182',
-    title: 'Agent #182 — inventor/thief',
-    tags: ['story', 'biography', 'inventor', 'compound', 'trade', '182'],
-    body: `Invented knap-compound · 307 trades · 257 attack orders · 23 children. Combines compound discovery with aggressive command and high trade volume — innovation and conflict in one lineage.`,
-    image: '/dvg/biographies/radar_182_0.png',
-    imageCaption: 'Trait radar — agent #182',
   },
 ];

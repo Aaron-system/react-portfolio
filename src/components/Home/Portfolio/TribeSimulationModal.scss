@@ -1,74 +1,61 @@
 .tribe-modal {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
 }
 
 .tribe-modal__backdrop {
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(2, 4, 18, 0.82);
-  backdrop-filter: blur(6px);
+  background: rgba(2, 4, 18, 0.88);
   cursor: pointer;
 }
 
 .tribe-modal__panel {
   position: relative;
-  width: min(980px, 100%);
-  max-height: calc(100vh - 48px);
-  overflow: hidden;
+  z-index: 1;
+  width: min(720px, 100%);
+  max-height: min(92vh, 900px);
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(255, 215, 0, 0.22);
-  border-radius: 16px;
+  border-radius: 14px;
   background: linear-gradient(180deg, #0d1024 0%, #080520 100%);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
 }
 
 .tribe-modal__header {
+  flex: 0 0 auto;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  padding: 24px 24px 16px;
+  gap: 12px;
+  padding: 18px 18px 14px;
   border-bottom: 1px solid rgba(255, 215, 0, 0.12);
 }
 
 .tribe-modal__eyebrow {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: #ffd700;
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-size: 10px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .tribe-modal__header h2 {
   margin: 0;
   color: #fff;
   font-family: 'Coolvetica', sans-serif;
-  font-size: clamp(28px, 4vw, 38px);
+  font-size: clamp(22px, 4.5vw, 32px);
   font-weight: 400;
-  line-height: 1.1;
-}
-
-.tribe-modal__subtitle,
-.tribe-modal__run {
-  margin: 10px 0 0;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.tribe-modal__run {
-  margin-top: 8px;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: rgba(255, 215, 0, 0.75);
+  line-height: 1.15;
 }
 
 .tribe-modal__close {
@@ -79,198 +66,159 @@
   border-radius: 8px;
   background: transparent;
   color: #ffd700;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
 
+.tribe-modal__scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 18px 20px;
+}
+
 .tribe-modal__hero {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 12px;
-  padding: 16px 24px 0;
+  margin: 0 0 18px;
 }
 
 .tribe-modal__hero img {
+  display: block;
   width: 100%;
+  height: auto;
   border-radius: 10px;
   border: 1px solid rgba(255, 215, 0, 0.12);
   background: #05041a;
 }
 
-.tribe-modal__stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  padding: 16px 24px;
+.tribe-modal__block {
+  margin-bottom: 20px;
 }
 
-.tribe-modal__stat {
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 215, 0, 0.1);
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.tribe-modal__stat-value {
-  display: block;
+.tribe-modal__block h3 {
+  margin: 0 0 10px;
   color: #ffd700;
   font-family: 'Coolvetica', sans-serif;
-  font-size: 22px;
-  line-height: 1.1;
-}
-
-.tribe-modal__stat-label {
-  display: block;
-  margin-top: 6px;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 11px;
-  line-height: 1.35;
-}
-
-.tribe-modal__search-wrap {
-  padding: 0 24px 12px;
-}
-
-.tribe-modal__search-label {
-  display: block;
-  margin-bottom: 8px;
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.tribe-modal__search {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 215, 0, 0.18);
-  background: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  font-size: 14px;
-}
-
-.tribe-modal__search:focus {
-  outline: none;
-  border-color: rgba(255, 215, 0, 0.45);
-  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.12);
-}
-
-.tribe-modal__search-meta {
-  margin: 8px 0 0;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 12px;
-}
-
-.tribe-modal__body {
-  overflow-y: auto;
-  padding: 8px 24px 24px;
-}
-
-.tribe-modal__section {
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.tribe-modal__section:last-child {
-  border-bottom: 0;
-}
-
-.tribe-modal__section-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.tribe-modal__section h3 {
-  margin: 0;
-  color: #fff;
-  font-family: 'Coolvetica', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
 }
 
-.tribe-modal__section p,
-.tribe-modal__section li {
+.tribe-modal__block p,
+.tribe-modal__highlights li {
+  margin: 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
-.tribe-modal__section ul {
-  margin: 12px 0 0;
-  padding-left: 18px;
-}
-
-.tribe-modal__tags {
+.tribe-modal__stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
-.tribe-modal__tags span {
-  padding: 4px 8px;
+.tribe-modal__stack span {
+  padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 215, 0, 0.14);
-  color: rgba(255, 215, 0, 0.8);
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.tribe-modal__figure {
-  margin: 16px 0 0;
-}
-
-.tribe-modal__figure img {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 215, 0, 0.12);
-  background: #05041a;
-}
-
-.tribe-modal__figure figcaption {
-  margin-top: 8px;
-  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 215, 0, 0.18);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 12px;
 }
 
-.tribe-modal__empty {
-  padding: 24px 0;
-  color: rgba(255, 255, 255, 0.6);
-  text-align: center;
+.tribe-modal__highlights {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.tribe-modal__highlights li + li {
+  margin-top: 8px;
+}
+
+.tribe-modal__plot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.tribe-modal__plot {
+  margin: 0;
+}
+
+.tribe-modal__plot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  background: #05041a;
+}
+
+.tribe-modal__plot figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tribe-modal__plot figcaption strong {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tribe-modal__plot figcaption span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tribe-modal__lens {
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid rgba(255, 215, 0, 0.45);
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+@media screen and (min-width: 600px) {
+  .tribe-modal__plot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tribe-modal__plot:last-child {
+    grid-column: 1 / -1;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .tribe-modal {
-    padding: 12px;
+    align-items: flex-end;
+    padding: 0;
   }
 
   .tribe-modal__panel {
-    max-height: calc(100vh - 24px);
-    border-radius: 12px;
+    width: 100%;
+    max-height: calc(100vh - 56px);
+    max-height: calc(100dvh - 56px);
+    border-radius: 14px 14px 0 0;
+    border-bottom: 0;
   }
 
-  .tribe-modal__header,
-  .tribe-modal__search-wrap,
-  .tribe-modal__body {
-    padding-left: 16px;
-    padding-right: 16px;
+  .tribe-modal__header {
+    padding: 16px 16px 12px;
   }
 
-  .tribe-modal__hero {
-    grid-template-columns: 1fr;
-    padding-left: 16px;
-    padding-right: 16px;
+  .tribe-modal__scroll {
+    padding: 14px 16px 24px;
   }
+}
 
-  .tribe-modal__stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-left: 16px;
-    padding-right: 16px;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .tribe-modal__panel {
+    width: min(680px, 92vw);
+    max-height: 88vh;
   }
 }
