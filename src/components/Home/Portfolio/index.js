@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TribeSimulationModal from './TribeSimulationModal';
 import './index.scss';
 
 const featuredProjects = [
@@ -17,10 +18,9 @@ const featuredProjects = [
     },
     {
         title: 'Neural Network Tribe Simulation',
-        category: 'Python / ML',
-        image: '/network_a38_t00400.png',
-        blur: true,
-        link: 'https://github.com/Aaron-system/Neural_network_Python',
+        category: 'Rust · Agent Sim · Economics',
+        image: '/dvg_tribe_sim.png',
+        modal: 'tribe-simulation',
     },
     {
         title: 'Flask Blockchain',
@@ -32,6 +32,7 @@ const featuredProjects = [
 
 const Portfolio = () => {
     const navigate = useNavigate();
+    const [activeModal, setActiveModal] = useState(null);
 
     const handleCardMove = (event) => {
         const { currentTarget, clientX, clientY } = event;
@@ -53,7 +54,9 @@ const Portfolio = () => {
         currentTarget.style.setProperty('--card-shift-y', '0px');
     };
 
-
+    const openModal = (modalId) => {
+        setActiveModal(modalId);
+    };
 
     return (
         <section className="portfolio-panel">
@@ -84,29 +87,47 @@ const Portfolio = () => {
                                     {project.link && (
                                         <span className="card__visit">Visit →</span>
                                     )}
+                                    {project.modal && (
+                                        <span className="card__visit">Explore →</span>
+                                    )}
                                 </div>
                             </>
                         );
 
                         const sharedProps = {
                             key: project.title,
-                            className: `card${project.placeholder ? ' card--placeholder' : ''}${project.link ? ' card--linked' : ''}`,
+                            className: `card${project.placeholder ? ' card--placeholder' : ''}${project.link || project.modal ? ' card--linked' : ''}`,
                             onMouseMove: handleCardMove,
                             onMouseLeave: resetCardMove,
                         };
 
-                        return project.link ? (
-                            <a
-                                {...sharedProps}
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {inner}
-                            </a>
-                        ) : (
-                            <article {...sharedProps}>{inner}</article>
-                        );
+                        if (project.link) {
+                            return (
+                                <a
+                                    {...sharedProps}
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {inner}
+                                </a>
+                            );
+                        }
+
+                        if (project.modal) {
+                            return (
+                                <button
+                                    type="button"
+                                    {...sharedProps}
+                                    className={`${sharedProps.className} card-button`}
+                                    onClick={() => openModal(project.modal)}
+                                >
+                                    {inner}
+                                </button>
+                            );
+                        }
+
+                        return <article {...sharedProps}>{inner}</article>;
                     })}
 
                     <button
@@ -142,6 +163,9 @@ const Portfolio = () => {
                 </div>
             </div>
 
+            {activeModal === 'tribe-simulation' && (
+                <TribeSimulationModal onClose={() => setActiveModal(null)} />
+            )}
         </section>
     );
 };

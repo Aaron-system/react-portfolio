@@ -67,6 +67,15 @@ const projects = [
     stack: ['Python', 'FastAPI', 'RAG', 'Vector DB', 'Hugging Face', 'React', 'LLM Orchestration'],
   },
   {
+    title: 'Neural Network Tribe Simulation (DVG)',
+    level: 'Research — Advanced',
+    description:
+      'Agent-based economic simulation in Rust where tribes with evolving neural networks discover chemistry, ' +
+      'trade, lend, fight, and invent language. Reference run golden_10k_1: 1.77M trades, 670+ emergent compounds, ' +
+      '12,914 loans, 2.1M utterances — macro cycles emerge from local bilateral rules with no central planner.',
+    stack: ['Rust', 'Python', 'Agent Simulation', 'Computational Economics', 'Hebbian Learning', 'Event Analysis'],
+  },
+  {
     title: 'Flask Blockchain',
     level: 'Personal — Advanced',
     description:

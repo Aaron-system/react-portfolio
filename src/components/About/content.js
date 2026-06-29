@@ -28,6 +28,7 @@ export const suggestedPrompts = [
   'Tell me about Horizon Legal Docs',
   'What is Arbiter Legal AI?',
   'Tell me about the blockchain project',
+  'Tell me about the tribe simulation',
 ];
 
 export const contentGuides = {
@@ -42,6 +43,8 @@ export const contentGuides = {
   'What is Arbiter Legal AI?': `Arbiter is a multi-model legal AI research assistant I built using RAG and hybrid retrieval. It sits on top of large document sets and returns near-instant answers by combining vector search with keyword retrieval, then feeding results into multiple LLMs simultaneously so you can compare their reasoning. Response times went from several minutes (manual search) to sub-second. Stack: FastAPI, Python, Hugging Face, vector databases, React frontend, custom LLM orchestration layer.`,
 
   'Tell me about the blockchain project': `The Flask Blockchain is a full distributed ledger built from scratch in Python. It implements proof-of-work consensus, peer-to-peer node registration, transaction validation, and exposes a REST API for mining blocks and inspecting the chain state. I built it to understand exactly how the Bitcoin protocol works at the implementation level — not just conceptually. I also have experience with Solidity for smart contract development.`,
+
+  'Tell me about the tribe simulation': `The DVG Tribe Simulation is my agent-based economics research project — a ground-up Rust rebuild where thousands of agents with evolving neural networks explore a 2D world. They discover graded chemistry (670+ compounds), trade bilaterally (1.77M trades), take reputation-indexed loans, invent language, and produce boom-bust cycles without any central planner. I built a Python forensic analysis pipeline over 199M+ logged events. On the homepage, click the simulation card to open a searchable findings modal with plots, agent stories, and the Markets as Search framework.`,
 };
 
 export const defaultGreeting =
