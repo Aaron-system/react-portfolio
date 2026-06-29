@@ -44,7 +44,7 @@ export const contentGuides = {
 
   'Tell me about the blockchain project': `The Flask Blockchain is a full distributed ledger built from scratch in Python. It implements proof-of-work consensus, peer-to-peer node registration, transaction validation, and exposes a REST API for mining blocks and inspecting the chain state. I built it to understand exactly how the Bitcoin protocol works at the implementation level — not just conceptually. I also have experience with Solidity for smart contract development.`,
 
-  'Tell me about the tribe simulation': `The DVG Tribe Simulation is my agent-based economics research project — a ground-up Rust rebuild where thousands of agents with evolving neural networks explore a 2D world. They discover graded chemistry (670+ compounds), trade bilaterally (1.77M trades), take reputation-indexed loans, and invent language — all without a central planner. Click the simulation card on the homepage for a short overview, tech stack, and key findings.`,
+  'Tell me about the tribe simulation': `The DVG Tribe Simulation is my agent-based economics research project — a ground-up Rust rebuild with evolving neural networks, graded chemistry, bilateral trade, credit, and emergent language. Click the simulation card on the homepage for the full presentation: tech stack, world maps, compounds, weapons, language signs, agent biographies, and research findings from the golden_10k_1 run.`,
 };
 
 export const defaultGreeting =

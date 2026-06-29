@@ -20,8 +20,8 @@
 .tribe-modal__panel {
   position: relative;
   z-index: 1;
-  width: min(720px, 100%);
-  max-height: min(92vh, 900px);
+  width: min(820px, 100%);
+  max-height: min(92vh, 920px);
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(255, 215, 0, 0.22);
@@ -58,6 +58,14 @@
   line-height: 1.15;
 }
 
+.tribe-modal__run {
+  margin: 8px 0 0;
+  color: rgba(255, 215, 0, 0.7);
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .tribe-modal__close {
   flex: 0 0 auto;
   width: 36px;
@@ -76,11 +84,11 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  padding: 16px 18px 20px;
+  padding: 16px 18px 28px;
 }
 
 .tribe-modal__hero {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
 }
 
 .tribe-modal__hero img {
@@ -93,104 +101,311 @@
 }
 
 .tribe-modal__block {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tribe-modal__block:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .tribe-modal__block h3 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: #ffd700;
   font-family: 'Coolvetica', sans-serif;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.tribe-modal__block h4 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .tribe-modal__block p,
-.tribe-modal__highlights li {
+.tribe-modal__list li {
   margin: 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: 14px;
   line-height: 1.6;
 }
 
-.tribe-modal__stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.tribe-modal__lead {
+  margin-bottom: 14px !important;
+  color: rgba(255, 255, 255, 0.65) !important;
 }
 
-.tribe-modal__stack span {
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 215, 0, 0.18);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 12px;
-}
-
-.tribe-modal__highlights {
+.tribe-modal__list {
   margin: 0;
   padding-left: 18px;
 }
 
-.tribe-modal__highlights li + li {
-  margin-top: 8px;
+.tribe-modal__list li + li {
+  margin-top: 6px;
 }
 
-.tribe-modal__plot-grid {
+/* Tech stack */
+.tribe-modal__block--tech {
+  background: rgba(255, 215, 0, 0.03);
+  margin-left: -18px;
+  margin-right: -18px;
+  padding: 20px 18px 24px;
+  border-bottom-color: rgba(255, 215, 0, 0.1);
+}
+
+.tribe-modal__tech-group {
+  margin-top: 18px;
+}
+
+.tribe-modal__tech-group ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.tribe-modal__tech-group li {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.tribe-modal__tech-group li + li {
+  margin-top: 6px;
+}
+
+/* Maps */
+.tribe-modal__map-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
-.tribe-modal__plot {
+.tribe-modal__map {
   margin: 0;
 }
 
-.tribe-modal__plot img {
+.tribe-modal__map img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 8px;
   border: 1px solid rgba(255, 215, 0, 0.1);
-  background: #05041a;
 }
 
-.tribe-modal__plot figcaption {
+.tribe-modal__map figcaption {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* Anthropology eras */
+.tribe-modal__block--anthro {
+  background: rgba(255, 255, 255, 0.02);
+  margin-left: -18px;
+  margin-right: -18px;
+  padding: 20px 18px 24px;
+}
+
+.tribe-modal__era-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tribe-modal__era {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.tribe-modal__era h4 {
+  color: #ffd700;
+  margin-bottom: 8px;
+}
+
+.tribe-modal__era-real {
+  font-size: 13px !important;
+  margin-bottom: 8px !important;
+}
+
+.tribe-modal__era-sim {
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.tribe-modal__era-sim span {
+  color: rgba(255, 215, 0, 0.75);
+}
+
+/* Data table — compounds */
+.tribe-modal__data-table {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: 8px;
+  gap: 6px;
 }
 
-.tribe-modal__plot figcaption strong {
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.tribe-modal__plot figcaption span {
-  color: rgba(255, 255, 255, 0.55);
+.tribe-modal__data-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1.5fr;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
   font-size: 12px;
   line-height: 1.4;
 }
 
-.tribe-modal__lens {
-  margin: 4px 0 0;
-  padding: 12px 14px;
-  border-left: 3px solid rgba(255, 215, 0, 0.45);
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 13px;
-  font-style: italic;
-  line-height: 1.55;
+.tribe-modal__data-name {
+  color: #ffd700;
+  font-family: 'Courier New', monospace;
 }
 
-@media screen and (min-width: 600px) {
-  .tribe-modal__plot-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.tribe-modal__data-type {
+  color: rgba(255, 255, 255, 0.55);
+}
 
-  .tribe-modal__plot:last-child {
-    grid-column: 1 / -1;
-  }
+.tribe-modal__data-note {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Language signs */
+.tribe-modal__sign-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.tribe-modal__sign {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.tribe-modal__sign code {
+  color: #ffd700;
+  font-size: 14px;
+}
+
+.tribe-modal__sign span {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  max-width: 220px;
+}
+
+/* Agents */
+.tribe-modal__agent-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tribe-modal__agent {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tribe-modal__agent img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.tribe-modal__agent h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.tribe-modal__agent h4 span {
+  color: rgba(255, 215, 0, 0.8);
+  font-weight: 400;
+}
+
+.tribe-modal__agent p {
+  font-size: 13px;
+}
+
+/* Findings grid */
+.tribe-modal__findings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tribe-modal__finding-card {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.tribe-modal__finding-card h4 {
+  color: #ffd700;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.tribe-modal__finding-card ul {
+  margin: 0 0 10px;
+  padding-left: 16px;
+}
+
+.tribe-modal__finding-card li {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.tribe-modal__finding-card li + li {
+  margin-top: 4px;
+}
+
+.tribe-modal__finding-card figure {
+  margin: 0;
+}
+
+.tribe-modal__finding-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Inline figures */
+.tribe-modal__inline-figure {
+  margin: 14px 0 0;
+}
+
+.tribe-modal__inline-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.tribe-modal__inline-figure figcaption {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
 }
 
 @media screen and (max-width: 768px) {
@@ -201,24 +416,55 @@
 
   .tribe-modal__panel {
     width: 100%;
-    max-height: calc(100vh - 56px);
     max-height: calc(100dvh - 56px);
     border-radius: 14px 14px 0 0;
     border-bottom: 0;
   }
 
-  .tribe-modal__header {
-    padding: 16px 16px 12px;
+  .tribe-modal__header,
+  .tribe-modal__scroll {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .tribe-modal__scroll {
-    padding: 14px 16px 24px;
+  .tribe-modal__block--tech,
+  .tribe-modal__block--anthro {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .tribe-modal__map-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tribe-modal__era-grid,
+  .tribe-modal__findings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tribe-modal__data-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .tribe-modal__agent {
+    grid-template-columns: 80px 1fr;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .tribe-modal__panel {
-    width: min(680px, 92vw);
-    max-height: 88vh;
+    width: min(760px, 94vw);
+  }
+
+  .tribe-modal__map-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tribe-modal__map:last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
   }
 }
