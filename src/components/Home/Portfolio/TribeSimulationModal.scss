@@ -307,9 +307,35 @@
 
 /* Agents */
 .tribe-modal__agent-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+}
+
+.tribe-modal__agent-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px dashed rgba(255, 215, 0, 0.15);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tribe-modal__agent-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  background: rgba(8, 5, 32, 0.6);
+}
+
+.tribe-modal__agent-icon img {
+  width: 72%;
+  height: 72%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .tribe-modal__agent {
@@ -447,6 +473,10 @@
   .tribe-modal__data-row {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .tribe-modal__agent-grid {
+    grid-template-columns: 1fr;
   }
 
   .tribe-modal__agent {

@@ -31,8 +31,6 @@ export const tribeSimulationTechStack = {
       '2,433 brain topology samples logged — networks visibly complexify across generations.',
       'Neurochemistry (dopamine, cortisol, oxytocin, hunger) feeds into action bias and language grounding.',
     ],
-    image: '/dvg/findings/brain_topology.png',
-    imageCaption: 'Mean brain nodes and connections over time',
   },
   python: {
     title: 'Python analysis pipeline',
@@ -139,9 +137,39 @@ export const tribeSimulationAgents = [
   },
   {
     id: '#2308',
-    role: 'War-commander',
+    role: 'War-commander / chief',
     detail: '9 kills · 166 attack orders · coined 6 words · GatherFor & AttackFor services',
-    image: null,
+    image: '/dvg/biographies/radar_2308_1.png',
+  },
+  {
+    id: '#421',
+    role: 'War-commander',
+    detail: '239 attack orders · 194 trades · Teach, GatherFor & Protect services · 18 children',
+    icon: '/dvg/agents/warrior.svg',
+  },
+  {
+    id: '#824',
+    role: 'Inventor / magnate',
+    detail: 'Invented 22 compounds (fitted-armor, fired-ceramic) · 118 trades · 37 children',
+    icon: '/dvg/agents/inventor.svg',
+  },
+  {
+    id: '#1240',
+    role: 'Chief / magnate',
+    detail: 'Wealth 65.0 · 90 attack orders · 70 trades · Teach & Protect specialist · 7 children',
+    icon: '/dvg/agents/chief.svg',
+  },
+  {
+    id: '#8',
+    role: 'Early elite',
+    detail: 'Representative early-run elite agent — trait profile from golden_10k_1 biography extraction',
+    icon: '/dvg/agents/elite.svg',
+  },
+  {
+    id: '#1625',
+    role: 'Warrior / chief / thief',
+    detail: '8 kills · 126 attack orders · 93 trades · dominance 1.00 · 8 children',
+    icon: '/dvg/agents/raider.svg',
   },
 ];
 

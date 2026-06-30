@@ -27,8 +27,6 @@ export const suggestedPrompts = [
   'What tech do you specialize in?',
   'Tell me about Horizon Legal Docs',
   'What is Arbiter Legal AI?',
-  'Tell me about the blockchain project',
-  'Tell me about the tribe simulation',
 ];
 
 export const contentGuides = {

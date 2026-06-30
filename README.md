@@ -2,7 +2,7 @@
 
 Personal portfolio built with React, showcasing my work in legal tech, AI systems, simulations, and full-stack development.
 
-**Live site:** [aaronk.tech](https://aaronk.tech)
+**Live site:** [aaronk.dev](https://aaronk.dev)
 
 ---
 
