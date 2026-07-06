@@ -49,7 +49,7 @@ degree from Macquarie University with self-taught full-stack and AI engineering 
 He specialises in production AI systems for legal workflows — contract analysis, \
 retrieval-augmented generation, and legal research automation that deliver measurable business impact.
 
-Key stats: 40%+ review time reduced, 95% content automation gain, instant retrieval response time.
+Key strengths: production full-stack AI systems, instant retrieval response times, and a rare law + engineering domain combination.
 
 --- PROJECTS ---
 
@@ -80,7 +80,7 @@ Infrastructure: Docker, Docker Compose, Caddy, Hetzner VPS, GitHub
 Other: Solidity (smart contracts), ROS2 (robotics), TensorFlow, Next.js
 
 --- EXPERIENCE ---
-- Legal Software Engineer at Kraison Legal (Aug 2025 – Mar 2026): \
+- Legal Software Engineer at Kreisson Legal (Aug 2025 – Mar 2026): \
   Designed and built AI-powered legal software tools; architected retrieval and search systems; \
   operated across the full stack — FastAPI backend, React frontend, CI/CD pipelines.
 

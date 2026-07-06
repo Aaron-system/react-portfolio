@@ -148,7 +148,7 @@ Each role object:
 ```js
 {
   title: 'Legal Software Engineer',    // Job title
-  company: 'Kreisson Legal',           // Company name
+  company: 'Company Name',             // Company name
   period: 'Aug 2025 — Mar 2026',       // Date range (em dash —)
   status: 'COMPLETED',                 // 'ACTIVE' | 'COMPLETED'
   bullets: [
@@ -198,11 +198,11 @@ Answers support plain text only — no JSX or markdown.
 'Tell me about Horizon Legal Docs',
 
 // In contentGuides:
-'Tell me about Horizon Legal Docs': `Horizon Legal Docs is a document automation
-platform built for Kreisson Legal. It generates construction contract drafts,
-extracts clauses, performs compliance review against GDPR/SOX, and auto-cites
-case law under AGLC4 standards. Built with React, FastAPI, and a custom NLP
-pipeline — deployed in production.`,
+'Tell me about Horizon Legal Docs': `Horizon Legal Docs is an independent legal
+document automation platform I designed and built from the ground up. It extracts
+clauses, performs compliance review, and auto-generates citations. Built with
+React, FastAPI, and a custom NLP pipeline — deployed in production at
+docs.aaronk.dev.`,
 ```
 
 ---
@@ -215,10 +215,10 @@ Use the sections below to populate the three projects the owner wants added.
 
 ### Project A — Horizon Legal Docs (HorizonLegal.png)
 
-**What it is:** An AI-powered legal document automation platform built and
-deployed in production at Kreisson Legal. Automates clause extraction, risk
-identification, compliance review, and AGLC4 citation for complex construction
-contracts. Reduces lawyer review time by 40%+.
+**What it is:** An AI-powered legal document automation platform designed and
+built independently by Aaron — a personal project developed entirely outside of
+any employment. Automates clause extraction, risk identification, compliance
+review, and citation generation. Live at docs.aaronk.dev.
 
 **Homepage card (already exists — update the title/category to match):**
 
@@ -237,10 +237,9 @@ contracts. Reduces lawyer review time by 40%+.
   title: 'Horizon Legal Docs',
   level: 'Production — Advanced',
   description:
-    'AI-powered legal document automation platform deployed at Kreisson Legal. ' +
-    'Multi-phase clause extraction, risk identification, GDPR/SOX compliance review, ' +
-    'and AGLC4 auto-citation for complex construction contracts. ' +
-    'Reduced lawyer review time by over 40% per engagement.',
+    'AI-powered legal document automation platform built independently from the ground up. ' +
+    'Multi-phase clause extraction, risk identification, compliance review, ' +
+    'and automated citation generation. Deployed in production.',
   stack: ['React', 'Python', 'FastAPI', 'NLP', 'Transformers', 'PostgreSQL'],
 },
 ```
@@ -253,11 +252,11 @@ contracts. Reduces lawyer review time by 40%+.
 
 // contentGuides — add:
 'Tell me about Horizon Legal Docs': `Horizon Legal Docs is a production legal document
-automation platform I built at Kreisson Legal. It ingests complex construction contracts,
-runs multi-phase clause extraction, flags risk clauses, checks compliance against GDPR
-and SOX, and auto-generates AGLC4 citations. The platform reduced lawyer review time
-by over 40% per engagement and is live in production. Stack: React, FastAPI, Python,
-custom NLP pipelines, PostgreSQL.`,
+automation platform I designed and built from scratch as an independent project. It
+ingests legal documents, runs multi-phase clause extraction, flags risk areas, checks
+compliance, and auto-generates citations. The full stack — React frontend, FastAPI
+backend, custom NLP pipelines, and PostgreSQL — was built independently end to end.
+It's live in production at docs.aaronk.dev.`,
 ```
 
 ---

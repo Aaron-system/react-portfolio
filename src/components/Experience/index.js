@@ -92,7 +92,7 @@ const services = [
     title: 'Contract Intelligence',
     icon: '§',
     description:
-      'Automated clause extraction, risk identification, and compliance review for complex contracts. Custom-built NLP pipelines that reduce review time by 40%+.',
+      'Automated clause extraction, risk identification, and compliance review for complex contracts. Custom-built NLP pipelines that cut hours of manual review down to minutes.',
   },
   {
     title: 'Document Automation',
@@ -136,8 +136,8 @@ const skills = {
 };
 
 const impactMetrics = [
-  { value: '40%+', label: 'review time reduced' },
-  { value: '95%', label: 'content automation gain' },
+  { value: 'Full stack', label: 'design to deployment' },
+  { value: '4+', label: 'live production apps' },
   { value: 'Instant', label: 'retrieval response time' },
   { value: 'Law + AI', label: 'domain advantage' },
 ];
