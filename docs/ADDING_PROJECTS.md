@@ -15,7 +15,7 @@ react-portfolio/
 │   ├── arbiter.png                  ← Card image for Arbiter Legal AI
 │   ├── blockchain.png               ← Card image for Flask Blockchain
 │   ├── network_a38_t00400.png       ← Card image for Neural Network Sim
-│   └── Aaron_Kreidieh_Resume_2026.docx
+│   └── resume.docx                  ← Downloadable resume (linked as /resume.docx)
 │
 └── src/
     └── components/
@@ -389,4 +389,4 @@ at https://aaronk.tech immediately — no DNS or Caddy changes needed.
 | Update job history | `Experience/index.js` → `roles` array |
 | Add chatbot Q&A | `About/content.js` → `suggestedPrompts` + `contentGuides` |
 | Add a new image | Copy file to `public/`, reference as `/filename.png` in code |
-| Change resume file | Replace `public/Aaron_Kreidieh_Resume_2026.docx`, update href in `About/index.js` and `Experience/index.js` |
+| Change resume file | Replace `public/resume.docx` (keep the filename — `About/index.js` and `Experience/index.js` link to `/resume.docx` and set the download name). Never add resume files under other names to `public/` — anything there is publicly downloadable. |
